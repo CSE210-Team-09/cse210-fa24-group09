@@ -1,0 +1,21 @@
+name: Test and Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Run workflow on push to the main branch
+
+jobs:
+  # Build and test job
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+
+    - name: Run JavaScript test file
+      run: node test/test.js # Run the JavaScript test file
