@@ -1,0 +1,22 @@
+name: Unit Tests
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+      - cicd_unittestautomation
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  Jest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Jest
+        run: npm install --save-dev jest
+      - name: Run Tests
+        run: npm test
