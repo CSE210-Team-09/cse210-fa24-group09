@@ -27,12 +27,12 @@ jobs:
           node-version: '20' # Prefer the latest
 
       # Step 3: Install all dependencies (including puppeteer)
-      - name: Install dependencies
-        run: npm install
+      - name: Install puppeteer
+        run: npm install puppeteer
 
       # Step 4: Run Puppeteer tests
       - name: Run Puppeteer Tests
-        run: node 'your-test-file.js'
+        run: node test/source.js
 
       # Step 5: Post-test cleanup (Optional)
       - name: Cleanup
