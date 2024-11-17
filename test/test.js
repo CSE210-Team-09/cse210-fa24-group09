@@ -8,6 +8,10 @@ function testAddition() {
       console.log("Test passed: 1 + 1 equals 2");
     }
   }
+
+  test('Addition test: ', () => {
+    expect(testAddition()).toBeUndefined();
+  });
   
   testAddition();
   
