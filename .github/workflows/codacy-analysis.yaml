@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@main
+        uses: actions/checkout@cicd_codequalitytool
 
       - name: Run Codacy Analysis CLI
         uses: codacy/codacy-analysis-cli-action@master
