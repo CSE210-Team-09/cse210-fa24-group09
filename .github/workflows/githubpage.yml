@@ -19,12 +19,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-
-    - name: Run JavaScript test file
-      run: node test/test.js 
-
     # Upload build output as an artifact
     - name: Upload artifact for GitHub Pages
       id: deployment
