@@ -1,0 +1,37 @@
+name: Generate JSDoc Documentation
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+      - cicd_documentation
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  build-and-upload-docs:
+    runs-on: ubuntu-latest  
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18  # Specify the Node.js version
+
+    - name: Install JSDoc
+      run: npm install -g jsdoc
+
+    - name: Generate JSDoc
+      run: jsdoc test -d out
+
+    - name: Upload Documentation as Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: documentation
+        path: out/
