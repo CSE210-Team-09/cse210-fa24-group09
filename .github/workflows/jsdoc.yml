@@ -1,0 +1,29 @@
+name: Generate JSDoc Documentation
+
+on:
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  build-and-upload-docs:
+    runs-on: ubuntu-latest  
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18.19.1'  # Specify the Node.js version
+
+    - name: Install JSDoc
+      run: npm install -g jsdoc
+
+    - name: Generate JSDoc
+      run: jsdoc test/test.js -d out
+
+    - name: Upload Documentation as Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: documentation
+        path: out/

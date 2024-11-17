@@ -1,4 +1,7 @@
-function testAddition() {
+/** 
+ * This is a description of the testAddition function. 
+*/
+function testAddition(length, breadth) {
     if (1 + 1 !== 2) {
       throw new Error("Test failed: 1 + 1 did not equal 2");
     } else {
