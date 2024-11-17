@@ -1,0 +1,16 @@
+env:
+  browser: true
+  es2021: true
+extends:
+  - google
+  - eslint:recommended
+overrides: []
+parserOptions:
+  ecmaVersion: latest
+  sourceType: module
+rules:
+  require-jsdoc: warn
+  no-unused-vars: warn
+  camelcase: off
+  max-len: warn
+  no-undef: off
