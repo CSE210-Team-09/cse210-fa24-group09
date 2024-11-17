@@ -5,6 +5,5 @@ function testAddition() {
       console.log("Test passed: 1 + 1 equals 2");
     }
   }
-  
-  testAddition();
+  module.exports = { testAddition };
   
