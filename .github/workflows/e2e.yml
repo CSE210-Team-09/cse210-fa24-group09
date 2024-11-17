@@ -1,0 +1,40 @@
+name: End-to-End Testing
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+      - cicd_e2etesting
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  end-to-end-testing:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository code
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Prefer the latest
+
+      # Step 3: Install all dependencies (including puppeteer)
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Run Puppeteer tests
+      - name: Run Puppeteer Tests
+        run: node 'your-test-file.js'
+
+      # Step 5: Post-test cleanup (Optional)
+      - name: Cleanup
+        if: always()
+        run: echo "Clean up completed"
