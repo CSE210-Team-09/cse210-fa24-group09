@@ -20,6 +20,11 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v2
 
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18  # Specify the Node.js version
+
     - name: Install JSDoc
       run: npm install -g jsdoc
 
