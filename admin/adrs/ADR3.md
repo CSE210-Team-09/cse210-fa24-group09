@@ -1,4 +1,6 @@
-## Problem
+# Unit Test Automation Tool Choice
+
+## Context and Problem Statement
 
 Our CI/CD pipeline should include unit test automation for branches and pull requests. That way, we can have a suite of unit tests that would run on each git push command, as well as each pull request, in order to ensure our code modules work as expected as we incrementally improve our design.
 
@@ -6,11 +8,23 @@ Our CI/CD pipeline should include unit test automation for branches and pull req
 
 We considered a variety of unit test frameworks for our CI/CD pipeline, such as Jest, Ava, and Tape. 
 
--Jest is relatively lightweight, easy to set up, and compatible with ESLint. It also allows for coverage reporting and snapshot testing, which may be useful when testing changes to elements in a page.
+Jest:
+- Relatively lightweight
+- Easy to set up
+- Compatible with ESLint
+- Also allows for coverage reporting and snapshot testing, which may be useful when testing changes to elements in a page
 
--Ava is minimalistic in its design, maintains an isolated environment for each unit test, and allows parallel testing. It also enforces atomic testing, which is useful in ensuring good practices with our tests.
+Ava:
+- Minimalistic in its design
+- Maintains an isolated environment for each unit test
+- Allows parallel testing
+- Also enforces atomic testing, which is useful in ensuring good practices with our tests
 
--Tape also allows parallel testing, is easy to extend, and the setup is straightforward. It does not require test runners, which would make it easier to write unit tests.
+Tape: 
+- Also allows parallel testing
+- Is easy to extend
+- Setup is straightforward
+- Does not require test runners, which would make it easier to write unit tests
 
 ## Decision Outcome
 
