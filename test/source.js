@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer');
-const { testAddition } = require('./test');
+const { testAddition } = require('./e2e');
 
 (async () => {
   // Launch the browser
