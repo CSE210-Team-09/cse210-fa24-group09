@@ -1,0 +1,53 @@
+name: Test and Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+      - cicd_githubpage
+  pull_request:
+    branches:
+      - main
+      - dev
+  workflow_dispatch:
+
+jobs:
+  # Build and test job
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+
+    - name: Run JavaScript test file
+      run: node test/test.js 
+
+    # Upload build output as an artifact
+    - name: Upload artifact for GitHub Pages
+      id: deployment
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: ./
+
+  # Deploy job
+  deploy:
+    needs: build # Only run this job if the build job succeeds
+    permissions:
+      pages: write      # Grant permission to write to GitHub Pages
+      id-token: write   # Grant permission to verify the deployment origin
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
