@@ -5,11 +5,9 @@ on:
     branches:
       - main
       - dev
-      - cicd_githubpage
   pull_request:
     branches:
       - main
-      - dev
   workflow_dispatch:
 
 jobs:
