@@ -1,6 +1,6 @@
 
-/** 
- * This is a description of the testAddition function. 
+/**
+ * This is a description of the testAddition function.
 */
 function testAddition() {
   if (1 + 1 !== 2) {
@@ -8,8 +8,9 @@ function testAddition() {
   } else {
     console.log("Test passed: 1 + 1 equals 2");
   }
-  test('Addition test: ', () => {
-    expect(testAddition()).toBeUndefined();
-  });
-  
-  testAddition();
+}
+test('Addition test: ', () => {
+  expect(testAddition()).toBeUndefined();
+})
+
+testAddition();
