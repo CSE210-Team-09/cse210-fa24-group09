@@ -2,7 +2,14 @@ name: Codacy Analysis CLI
 
 on:
   push:
-    branches: [ "cicd_codequalitytool" ]
+    branches:
+      - main
+      - dev
+      - cicd_codequalitytool
+  pull_request:
+    branches:
+      - main
+      - dev
 
 jobs:
   codacy-analysis-cli:
@@ -10,7 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@main
+        uses: actions/checkout@v4
 
       - name: Run Codacy Analysis CLI
         uses: codacy/codacy-analysis-cli-action@master
+        with:
+          additional-args: --exclude "**/*.md"
