@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install Dependencies
-        run: npm install
+      - name: Install Jest
+        run: npm install --save-dev jest
       - name: Run Tests
         run: npm test
