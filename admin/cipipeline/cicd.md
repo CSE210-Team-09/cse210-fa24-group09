@@ -54,19 +54,22 @@ To prevent this issue from occuring again, we will discuss and decide whether we
 
 A diagram for how we want to expand on our pipeline and what it would look like with this expansion can be seen below: ![future pipeline](./future_cicd.png)
 
-### Linting
+### Linting:
 
 For linting, we are currently only linting for Javascript files in the `source/js` directory. In the future, we want to also look for formatting inconsistencies in CSS and HTML files as well. This likely can be done with ESlint by using the prettier plugin, having a `prettierc.yml` file in the root of the directory, and having all developers use the Prettier VSCode extension. Alternatively, we can also use a prettier ESLint plugin to integrate this change.
 
-### Codacy
+### Code Quality via Tool:
+
 Currently, Codacy assumes that we are using ES6 syntax rules, when some of our code is written in CommonJS due to Jest. Thus, in the future we want to decide if we are going to use ES6 or CommonJS when writing our application, and configure our tools to follow the same syntax rules.
 
-### Documentation
+### Documentation:
+
 For the code documentation using JSDoc tool, currently the documentation website generated is uploaded as an artifact within the GitHub workflow. Future enhancements will shift from artifact uploading to integrating a documentation link directly on a dedicated GitHub Page, which will also be deployed upon pull requests to the `dev` and `main` branches.
 
-### E2E 
+### E2E:
+
 In our current pipeline, E2E testing using Puppeteer is done using a simple test file to check if the tool is working. In the future, we will implement the E2E testing on the application web pages after writing working code during development to ensure that our application is working as expected. The workflow is currently triggered only for pull and push requests to the `main` and `dev` branches, but in the future we also want to enable it to run for pushes to feature branches.
 
-### Github Pages
+### Github Pages:
 
 Currently, deployment using Github Pages is triggered only for pull requests to the `main` branch, but we plan to enable deployment for pull requests to the `dev` branch as well. The reason for this is to allow the team to test and validate changes in a staging environment before merging into `main`. Doing so means that any potential issues are caught early, and it improves the overall stability of the main branch.
