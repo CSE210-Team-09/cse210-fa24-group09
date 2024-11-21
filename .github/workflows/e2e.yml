@@ -26,22 +26,20 @@ jobs:
           node-version: '20' # Prefer the latest
       # Step 3: Initialize package.json with "type": "module"
       - name: Initialize a module
-        run: |
+        run: if [ ! -f package.json ]; then
+            npm init -y
+          fi
           npx json -I -f package.json -e 'this.type="module"'
 
       # Step 4: Install all dependencies (including puppeteer)
-      - name: NPM init
-        run: npm init -y
-
-      # Step 5: Install all dependencies (including puppeteer)
       - name: Install puppeteer
         run: npm install puppeteer --save-dev 
 
-      # Step 6: Run Puppeteer tests
+      # Step 5: Run Puppeteer tests
       - name: Run Puppeteer Tests
         run: node test/source.js
 
-      # Step 7: Post-test cleanup (Optional)
+      # Step 6: Post-test cleanup (Optional)
       - name: Cleanup
         if: always()
         run: echo "Clean up completed"
