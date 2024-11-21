@@ -24,7 +24,7 @@ jobs:
         node-version: 18  # Specify the Node.js version
 
     - name: Install JSDoc
-      run: npm install -g jsdoc
+      run: npm install --save-dev jsdoc
 
     - name: Generate JSDoc
       run: jsdoc test -d out
