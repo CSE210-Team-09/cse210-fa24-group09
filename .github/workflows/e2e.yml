@@ -35,7 +35,7 @@ jobs:
 
       # Step 5: Install all dependencies (including puppeteer)
       - name: Install puppeteer
-        run: npm install puppeteer
+        run: npm install puppeteer --save-dev 
 
       # Step 6: Run Puppeteer tests
       - name: Run Puppeteer Tests
