@@ -11,6 +11,7 @@ body {
 
   #title{
     text-align: center;
+    font-weight: bold;
     font-size: 30px;
   }
   
@@ -48,8 +49,6 @@ body {
   .search-bar-container input:focus {
     border-color: #28a745;
   }
-
-
   
   .header button {
     padding: 20px;
@@ -88,5 +87,4 @@ body {
   .notes-list li:last-child {
     border-bottom: none;
   }
-  
   
