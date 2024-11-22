@@ -1,4 +1,4 @@
-import puppeteer from 'puppeteer';
+const puppeteer = require('puppeteer');
 const { testAddition } = require('./e2e');
 
 (async () => {
