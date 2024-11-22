@@ -1,6 +1,8 @@
 {
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint": "npx eslint --config ./pipeline/.eslintrc.yml ./source/js",
+    "lint-fix": "npx eslint --config ./pipeline/.eslintrc.yml ./source/js --fix"
   },
   "devDependencies": {
     "eslint": "^8.28.0",
