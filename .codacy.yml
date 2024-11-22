@@ -4,3 +4,13 @@ exclude_paths:
   - "**/*.pdf"
   - "**/*.JPG"
   - "**/*.png"
+  - "**/*.html"
+  - "specs/*"
+  - "pipeline/*"
+  - "admin/*"
+  - ".github/workflows/*"
+
+engines:
+  eslint:
+    enabled: true
+    configFile: pipeline/.eslintrc.yml
