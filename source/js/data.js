@@ -11,7 +11,27 @@ const data_template = {
 
 const DATA_INDEX = -1;
 
+class DataIDGenerator {
+    static DATA_INDEX_KEY = 'data_index';
 
+    static get_data_index() {
+        let index = parseInt(localStorage.getItem(this.DATA_INDEX_KEY));
+        return index
+    }
+
+    static generate_id() {
+        const id = this.get_data_index();
+        this.increment_data_index();
+
+        return id;
+    };
+
+    static increment_data_index() {
+        let index = this.get_data_index();
+        index++;
+        localStorage.setItem(this.DATA_INDEX_KEY, index);
+    }
+}
 
 // journalStorage.js
 class JournalStorage {
@@ -22,8 +42,9 @@ class JournalStorage {
         return JSON.parse(ids_titles);
     }
 
-    static create_journal(title, code, comment, date) {
-        const id = DATA_INDEX + 1;
+    static create_journal(title, code, comment) {
+        const id = DataIDGenerator.generate_id();
+        const date = Date.now()
         const new_entry = {
             id: id,
             title: title,
@@ -31,7 +52,10 @@ class JournalStorage {
             comment: comment,
             date: date
         }
+
+        // save journal to local storage
         localStorage.setItem(new_entry.id, JSON.stringify(new_entry));
+
         const all_journals = JournalStorage.get_all_journals()
         all_journals.push(
             {
@@ -40,11 +64,21 @@ class JournalStorage {
             }
         );
 
+        // save journal to arrray of all journal entries
         localStorage.setItem(this.DATA_ARRAY_KEY, JSON.stringify(all_journals));
+
+        return true;
     }
 
-    static save_journal(journal) {
-        localStorage.setItem(journal.id.toString(), JSON.stringify(journal));
+    static edit_journal(id, title, comment, code) {
+        const journal = JournalStorage.get_journal(id);
+        journal.title = title;
+        journal.comment = comment;
+        journal.code = code;
+
+        localStorage.setItem(id.toString(), JSON.stringify(journal));
+
+        // TODO: update journal in list of all journal entries
 
     }
 
@@ -52,9 +86,21 @@ class JournalStorage {
         const journal = localStorage.getItem(id.toString());
         return JSON.parse(journal);
     }
-
+    // TODO this needs to return true or false
     static delete_journal(id) {
+        // remove journal entry from local storage
         localStorage.removeItem(id.toString());
+
+        // remove journal entry from list of all journal entries in local storage
+        const all_journals = JournalStorage.get_all_journals();
+        for (let i = 0; i < all_journals.length; i++) {
+            if (all_journals[i].id === id) {
+                all_journals.splice(i, 1);
+                break;
+            }
+        }
+        // set the new list of all journal entries
+        localStorage.setItem(this.DATA_ARRAY_KEY, JSON.stringify(all_journals));
     }
 
 
@@ -83,29 +129,26 @@ const API = {
 
     /**
      * Retrieves a specific journal by ID.
-     * @param {number|string} id - The ID of the journal to retrieve.
+     * @param {number} id - The ID of the journal to retrieve.
      * @returns {}
      */
     get_journal: id => JournalStorage.get_journal(id),
 
     /**
      * Creates a new journal.
-     * @param {number|string} id - The ID of the new journal.
      * @param {string} title - The title of the new journal.
      * @param {string} code - The code associated with the new journal.
      * @param {string} comment - A comment for the new journal.
-     * @param {Date} date - The date of the new journal.
      * @returns {}
      */
-    create_journal: (title, code, comment, date) => JournalStorage.create_journal(title, code, comment, date),
+    create_journal: (title, code, comment) => JournalStorage.create_journal(title, code, comment),
 
     /**
-     * Saves an existing journal.
+     * Saves an existing journal. (NEEDS TESTING)
      * @param {number} journal.id - The ID of the journal.
      * @param {string} journal.title - The title of the journal.
      * @param {string} journal.code - The code associated with the journal.
      * @param {string} journal.comment - A comment for the journal.
-     * @param {Date} journal.date - The date of the journal.
      * @returns {}
      */
     save_journal: (id, title, code, comment, date) => JournalStorage.save_journal(journal),
@@ -122,4 +165,7 @@ const API = {
 console.log('hello world');
 window.localStorage.clear();
 set_data(JournalStorage.DATA_ARRAY_KEY, JSON.stringify([]));
-set_data('1', JSON.stringify(data_template));
+set_data(DataIDGenerator.DATA_INDEX_KEY, -1)
+API.create_journal('title0', 'code0', 'comment0');
+API.create_journal('title1', 'code1', 'comment1');
+API.create_journal('title2', 'code2', 'comment2');
