@@ -71,7 +71,7 @@ document.getElementById('search-bar').addEventListener('keypress',
     });
 
 function viewNoteDetails(noteId) {
-  window.location.href = `/note/${noteId}`;
+  window.location.href = `/view.html?=${noteId}`;
 }
 
 // Placeholder function for creating a new note
