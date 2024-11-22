@@ -10,7 +10,7 @@ exclude_paths:
   - "admin/*"
   - "test/*"
   - ".github/workflows/*"
-  - "root/README.md"
+  - "README.md"
   - "root/*.md"
 
 engines:
