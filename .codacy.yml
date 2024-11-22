@@ -10,6 +10,7 @@ exclude_paths:
   - "admin/*"
   - "test/*"
   - ".github/workflows/*"
+  - "README.md"
 
 engines:
   eslint:
