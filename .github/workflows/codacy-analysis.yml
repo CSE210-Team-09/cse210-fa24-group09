@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - dev
+      - codacy_fix
   pull_request:
     branches:
       - main

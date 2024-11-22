@@ -8,6 +8,7 @@ exclude_paths:
   - "specs/*"
   - "pipeline/*"
   - "admin/*"
+  - "test/*"
   - ".github/workflows/*"
 
 engines:
