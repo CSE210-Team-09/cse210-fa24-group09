@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     margin: 20px;
     padding: 0;
     background-color: #f9f9f9;
@@ -24,6 +24,9 @@ h1 {
 }
 
 #code-container {
+    list-style: none;
+    max-height: 40vh;
+    overflow-y: auto;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
@@ -34,8 +37,17 @@ h1 {
     background-color: #f9f9f9; 
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }
-
+#code-comment-container{
+    padding:20px;
+    list-style: none;
+    padding:0;
+    max-height: 80vh;
+    overflow-y: auto;
+}
 #comment-container {
+    list-style: none;
+    max-height: 40vh;
+    overflow-y: auto;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
@@ -43,10 +55,10 @@ h1 {
 }
 
 #home-button {
+    font-family: 'Courier New', Courier, monospace;
     display: block;
-    margin: 20px auto;
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #28a745;
     color: white;
     border: none;
     border-radius: 5px;
@@ -59,10 +71,10 @@ h1 {
 }
 
 #edit-button {
+    font-family: 'Courier New', Courier, monospace;
     display: block;
-    margin: 20px auto;
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #28a745;
     color: white;
     border: none;
     border-radius: 5px;
