@@ -160,19 +160,19 @@ localStorage.setItem('notes', JSON.stringify(dummyNotes));
 
 /**
  * Retrieves the value of the "id" query parameter from the current URL.
- * 
- * @returns {string|null} The value of the "id" query parameter as a string, or `null` if not found.
+ *
+ * @return {string|null} The value of the "id" query parameter as a string, or `null` if not found.
  */
 function getQueryParam() {
   const urlParams = new URLSearchParams(window.location.search);
   // console.log(urlParams.get("id"));
-  return urlParams.get("id");
+  return urlParams.get('id');
 }
 
 /**
  * Parses the "id" query parameter from the URL into an integer.
  * If the query parameter is not present or cannot be parsed as an integer, the value will be `NaN`.
- * 
+ *
  * @type {number} The parsed ID from the URL.
  */
 const id = parseInt(getQueryParam(), 10); // getQueryParam();
