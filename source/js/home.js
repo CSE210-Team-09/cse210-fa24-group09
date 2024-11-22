@@ -2,11 +2,10 @@
 
 API.init(true);
 
-const notes = API.get_all_journals()
+const notes = API.get_all_journals();
 
 // Function to display notes on the homepage
 function displayNotes(filteredNotes = notes) {
-
   const notesList = document.getElementById('notes-list');
   notesList.innerHTML = '';
 
@@ -43,7 +42,7 @@ document.getElementById('search-bar').addEventListener('keypress',
     });
 
 function viewNoteDetails(noteId) {
-  window.location.href = `/view.html?=${noteId}`;
+  window.location.href = `../html/view.html?id=${noteId}`;
 }
 
 // Placeholder function for creating a new note
