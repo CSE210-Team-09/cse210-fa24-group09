@@ -64,11 +64,11 @@ function filterNotes() {
 
 // Add listener for the Enter key in the search bar
 document.getElementById('search-bar').addEventListener('keypress',
-  function(event) {
-  if (event.key === 'Enter') {
-    filterNotes();
-  }
-});
+    function(event) {
+      if (event.key === 'Enter') {
+        filterNotes();
+      }
+    });
 
 function viewNoteDetails(noteId) {
   window.location.href = `/note/${noteId}`;
