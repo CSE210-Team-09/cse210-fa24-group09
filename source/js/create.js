@@ -18,8 +18,7 @@ function saveAndReturn() {
   if (API.create_journal(title, code, comment)) {
     alert('Note created successfully!');
     goHome();
-  } 
-  else {
+  } else {
     alert('Failed to create note.');
   }
 }
