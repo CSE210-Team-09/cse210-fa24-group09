@@ -6,8 +6,8 @@ function goHome() {
 }
 
 /**
- * This function saves the note using the JournalStorage API, and sends an alert if
- * the note is saved successfully, or if an error occurred.
+ * This function saves the note using the JournalStorage API, and sends an
+ * alert if the note is saved successfully, or if an error occurred.
  */
 function saveAndReturn() {
   const title = document.getElementById('text-input').value;
@@ -16,9 +16,9 @@ function saveAndReturn() {
 
   // Need to call create_journal from data.js to pass the information over
   if (API.create_journal(title, code, comment)) {
-      alert('Note created successfully!');
-      goHome();
-    }
+    alert('Note created successfully!');
+    goHome();
+  } 
   else {
     alert('Failed to create note.');
   }
