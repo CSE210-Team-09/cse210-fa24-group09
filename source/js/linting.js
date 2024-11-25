@@ -1,3 +1,6 @@
+/**
+ * Foo function to log "Hello World" to the console.
+ */
 function foo() {
   console.log('Hello World');
 }
