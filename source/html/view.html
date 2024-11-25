@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Notes App</title>
+        <link rel="stylesheet" href="../css/view.css">
+      </head>
+      
+      <div id="button-container">
+        <button id="home-button" onclick="goBackHome()">Home</button>
+        <button id="edit-button" onclick="editNote()">Edit Note</button>
+    </div>
+
+    <body>
+    <div id="title-container">
+        <!-- Title will be dynamically inserted here -->
+    </div>
+    <div id="code-comment-container">
+        <div id="code-container">
+            <!-- Code will be dynamically inserted here -->
+        </div>
+        <h4>
+            Comment
+        </h4>
+        <div id="comment-container">
+            <!-- Comment will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/view.js"></script>
+    </body>
+</html>

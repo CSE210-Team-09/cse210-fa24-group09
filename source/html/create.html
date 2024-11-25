@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Notes App</title>
+        <link rel="stylesheet" href="../css/create.css">
+      </head>
+
+    <div id="button-container">
+      <button id="cancel-button" onclick="goHome()">Cancel</button>
+      <button id="save-button" onclick="saveAndReturn()">Save and Return</button>
+    </div>  
+    
+    <body>
+
+      <div id="title">
+        Code Snippet Saver
+      </div>
+
+      <div id="title-container">
+        <label for="text-input">New Note Title:</label>
+        <input type="text" id="text-input" name="text-input" placeholder="Enter title here...">
+      </div>
+
+      <div id="code-container">
+        <label for="code-input">Code:</label>
+        <textarea id="code-input" placeholder="Write your code here..."></textarea>
+      </div>
+
+      <div id="comment-container">
+        <label for="comment-input">Comments:</label>
+        <textarea id="comment-input" placeholder="Write your comments here..."></textarea>
+      </div>
+      
+      <script src="../js/create.js"></script>
+      <script src="../js/data.js"></script>
+    </body>
+</html>
