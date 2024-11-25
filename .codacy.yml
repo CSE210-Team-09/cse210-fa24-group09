@@ -1,0 +1,19 @@
+---
+exclude_paths:
+  - "README.md"
+  - "**/*.md"
+  - "**/*.pdf"
+  - "**/*.JPG"
+  - "**/*.png"
+  - "**/*.html"
+  - "specs/*"
+  - "pipeline/*"
+  - "admin/*"
+  - "test/*"
+  - ".github/workflows/*"
+  - "root/*.md"
+
+engines:
+  eslint:
+    enabled: true
+    configFile: pipeline/.eslintrc.yml

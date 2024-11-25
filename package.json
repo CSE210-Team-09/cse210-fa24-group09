@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "test": "jest",
+    "lint": "npx eslint --config ./pipeline/.eslintrc.yml ./source/js",
+    "lint-fix": "npx eslint --config ./pipeline/.eslintrc.yml ./source/js --fix"
+  },
+  "devDependencies": {
+    "eslint": "^8.28.0",
+    "eslint-config-google": "^0.14.0",
+    "jest": "^29.7.0",
+    "jsdoc": "^4.0.4",
+    "puppeteer": "^23.9.0"
+  }
+}
