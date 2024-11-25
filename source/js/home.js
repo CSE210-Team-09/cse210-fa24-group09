@@ -47,7 +47,7 @@ function viewNoteDetails(noteId) {
 
 // Placeholder function for creating a new note
 function createNewNote() {
-  window.location.href = `/create`;
+  window.location.href = `../html/create.html`;
 }
 
 // Initial display
