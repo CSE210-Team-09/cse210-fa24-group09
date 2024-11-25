@@ -24,7 +24,7 @@ After collecting and reviewing these Google Form responses, we then had an open 
 
 ## What went well during the sprint
 
-In this question, we discussed our thoughts on what went well overall during the sprint. Overall... 
+In this question, we discussed our thoughts on what went well overall during the sprint. Overall, we thought that the work for this sprint was divided effectively as we worked in pairs for the various features, meetings were more productive and focused, and we made good progress on our features and completed the tasks we set out for ourselves.
 
 ### Individual Responses:
 
@@ -41,7 +41,7 @@ In this question, we discussed our thoughts on what went well overall during the
 
 ## What we think didn’t go so well/what slowed us down
 
-In this question, we discussed our thoughts on what didn't go well during the sprint, and what slowed down our progress. Overall...
+In this question, we discussed our thoughts on what didn't go well during the sprint, and what slowed down our progress. Overall, there was some concern about the start of the sprint still being on Wednesday, handling merge conflicts between branches, having more offline communication rather than the bulk of communicating between pairs being during meetings, and lack of testing the application after implementing the features.
 
 ### Individual Responses:
 
@@ -56,28 +56,28 @@ In this question, we discussed our thoughts on what didn't go well during the sp
    - Most issues are solved in meetings, but I think they should also be aimed at being solved through offline communication
    - We still basically decided what the spring it going to be about on Wednesday, which was a bit late (even though it was much more efficient this time)
 7. - It still felt like we started our sprint on Wednesday and only had like two days for it
-   - There was still some last minute progress on our application."
+   - There was still some last minute progress on our application.
 
 ## What we can improve
 
-We asked everyone their thoughts on what can be improved for future sprints. 
+We asked everyone their thoughts on what can be improved for future sprints. People generally thought that we should have more communication outside of meetings if there are discrepancies between branches or if anyone is stuck, and overall we should start the sprint earlier, like on Monday.
 
 ### Individual Responses:
 
 1. I think we can make the website more appealing after finishing the basic working of the website.
 2. We still need to get better at communicating, either via Mattermost or via text. The merging process between branches should have a set of guidelines to avoid overwriting existing work.
 3. - i thought it was very good for the most part
-   - really concentrate on the testing portion with the pipeline and also user created testing for edge cases"
+   - really concentrate on the testing portion with the pipeline and also user created testing for edge cases
 4. Containing the sprint work within the sprint and reduce rollover.
 5. testing
 6. - Communicating offline for help 
    - Starting sprints on Mondays
 7. - Starting the sprint earlier
-   - If your feature relies on another feature, please reach out to that team earlier rather than waiting for the group meeting"
+   - If your feature relies on another feature, please reach out to that team earlier rather than waiting for the group meeting
 
 ## How can we improve
 
-Based on their concerns discussed above, people also shared their thoughts on how we can improve for future sprints.
+Based on their concerns discussed above, people also shared their thoughts on how we can improve for future sprints. The main points that were brought up were about communicating more outside of meetings and starting the sprint earlier. For this sprint, we decided what issues we should accomplish earlier, during our meeting on Sunday.
 
 ### Individual Responses:
 
@@ -92,7 +92,7 @@ Based on their concerns discussed above, people also shared their thoughts on ho
 
 ## Everyone's current thoughts on where we are
 
-Finally, everyone shared their thoughts on where we currently are in the process.
+Finally, everyone shared their thoughts on where we currently are in the process. Overall, everyone thought that we made good progress during the sprint and are currently in a good place when it comes to development of our application.
 
 ### Individual Responses:
 
