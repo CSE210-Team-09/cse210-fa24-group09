@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - dev
+      - sprint3_jsdoc_GHpages_integration
   pull_request:
     branches:
       - main
