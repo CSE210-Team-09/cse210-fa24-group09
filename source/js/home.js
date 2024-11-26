@@ -1,6 +1,6 @@
 // Sample data
 
-API.init(true);
+API.init(false);
 
 const notes = API.get_all_journals();
 
