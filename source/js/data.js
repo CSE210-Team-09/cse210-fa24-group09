@@ -167,7 +167,6 @@ const API = {
     if (existingData) {
       return;
     }
-    
     set_data(JournalStorage.DATA_ARRAY_KEY, JSON.stringify([]));
     set_data(DataIDGenerator.DATA_INDEX_KEY, -1);
     if (dummy) {
