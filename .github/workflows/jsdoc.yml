@@ -59,7 +59,7 @@ jobs:
 
   # Deploy job
   deploy:
-    needs: build # Only run this job if the build job succeeds
+    needs: build-docs # Only run this job if the build job succeeds
     permissions:
       pages: write      # Grant permission to write to GitHub Pages
       id-token: write   # Grant permission to verify the deployment origin
