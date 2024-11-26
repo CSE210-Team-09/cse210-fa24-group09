@@ -11,7 +11,7 @@ on:
       - dev
 
 jobs:
-  build-and-upload-docs:
+  build-docs:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,10 +27,49 @@ jobs:
       run: npm install -g jsdoc
 
     - name: Generate JSDoc
-      run: jsdoc test -d out
-
-    - name: Upload Documentation as Artifact
-      uses: actions/upload-artifact@v4
+      run: jsdoc source/js -d out
+    
+    # Upload build output as an artifact
+    - name: Upload artifact for GitHub Pages
+      id: deployment
+      uses: actions/upload-pages-artifact@v3
       with:
-        name: documentation
-        path: out/
+        path: ./
+
+    # - name: Upload Documentation as Artifact
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: documentation
+    #     path: out/
+
+  # build:
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #   - name: Checkout repository
+  #     uses: actions/checkout@v4
+
+  #   # Upload build output as an artifact
+  #   - name: Upload artifact for GitHub Pages
+  #     id: deployment
+  #     uses: actions/upload-pages-artifact@v3
+  #     with:
+  #       path: ./
+
+  # Deploy job
+  deploy:
+    needs: build # Only run this job if the build job succeeds
+    permissions:
+      pages: write      # Grant permission to write to GitHub Pages
+      id-token: write   # Grant permission to verify the deployment origin
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
