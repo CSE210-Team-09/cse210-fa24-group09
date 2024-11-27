@@ -63,5 +63,18 @@ function editNote() {
   window.location.href = '../html/edit.html';
 }
 
+// Delete note
+/**
+ * Delete the note and redirects the user to the home page.
+ */
+function deleteNote() {
+  API.delete_journal(id);
+  // Call the global function (from home.js) to refresh the notes list on the homepage
+  if (typeof window.onNoteDeleted === 'function') {
+    window.onNoteDeleted(); // Notify home.js to update the note list
+  }
+  window.location.href = '../html/home.html';
+}
+
 // Load the note when the page loads
 loadNoteById(id);

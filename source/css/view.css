@@ -64,6 +64,7 @@ h1 {
     border-radius: 5px;
     cursor: pointer;
     float: left;
+    margin-right: auto;
 }
 
 #home-button:hover {
@@ -80,8 +81,25 @@ h1 {
     border-radius: 5px;
     cursor: pointer;
     float: right;
+    margin-right: 10px;
 }
 
 #edit-button:hover {
+    background-color: #0056b3;
+}
+
+#delete-button {
+    font-family: 'Courier New', Courier, monospace;
+    display: block;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+}
+
+#delete-button:hover {
     background-color: #0056b3;
 }
