@@ -1,10 +1,12 @@
 // Sample data
 
-API.init(false);
+// API.init(false);
 
-const notes = API.get_all_journals();
+// const notes = API.get_all_journals();
 
+const notes = [{id:"1", title:"1", tags:["hey1"]}, {id:"1", title:"hy", tags:["hey2", "yo"]}, {id:"1", title:"jh", tags:["hey2"]}]
 // Function to display notes on the homepage
+
 function displayNotes(filteredNotes = notes) {
   const notesList = document.getElementById('notes-list');
   notesList.innerHTML = '';
@@ -13,10 +15,9 @@ function displayNotes(filteredNotes = notes) {
     notesList.innerHTML = '<li>No notes found</li>';
     return;
   }
-
   filteredNotes.forEach((note) => {
-    const noteItem = document.createElement('li');
-    noteItem.textContent = `${note.title}`;
+    const noteItem = document.createElement('li'); 
+    noteItem.innerHTML = `${note.title}<br>Tags:[${note.tags.join(", ")}]`;
     noteItem.onclick = () => viewNoteDetails(note.id);
     notesList.appendChild(noteItem);
   });
@@ -27,8 +28,7 @@ function filterNotes() {
   const searchTerm = document.getElementById('search-bar').value.toLowerCase();
 
   const filteredNotes = notes.filter((note) =>
-    note.title.toLowerCase().includes(searchTerm),
-  );
+    note.title.toLowerCase().includes(searchTerm)||note.tags.some(tag => tag.toLowerCase().includes(searchTerm)));
 
   displayNotes(filteredNotes);
 }
