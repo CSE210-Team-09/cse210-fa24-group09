@@ -7,10 +7,11 @@ const data_template = {
   code: '',
   comment: '',
   date: '',
+  tags: [],
 };
 
 const DATA_INDEX = -1;
-
+``
 class DataIDGenerator {
   static DATA_INDEX_KEY = 'data_index';
 
@@ -42,7 +43,7 @@ class JournalStorage {
     return JSON.parse(ids_titles);
   }
 
-  static create_journal(title, code, comment) {
+  static create_journal(title, code, comment, tags) {
     const id = DataIDGenerator.generate_id();
     const date = Date.now();
     const new_entry = {
@@ -51,6 +52,7 @@ class JournalStorage {
       code: code,
       comment: comment,
       date: date,
+      tags: tags,
     };
 
     // save journal to local storage
@@ -58,10 +60,11 @@ class JournalStorage {
 
     const all_journals = JournalStorage.get_all_journals();
     all_journals.push(
-        {
-          id: new_entry.id,
-          title: new_entry.title,
-        },
+      {
+        id: new_entry.id,
+        title: new_entry.title,
+        tags: new_entry.tags,
+      },
     );
 
     // save journal to arrray of all journal entries
@@ -70,15 +73,30 @@ class JournalStorage {
     return true;
   }
 
-  static edit_journal(id, title, comment, code) {
+  static edit_journal(id, title, comment, code, tags) {
     const journal = JournalStorage.get_journal(id);
     journal.title = title;
     journal.comment = comment;
     journal.code = code;
+    journal.tags = tags;
 
     localStorage.setItem(id.toString(), JSON.stringify(journal));
 
     // TODO: update journal in list of all journal entries
+
+    // search for journal id in the list of all journal entries
+    const all_journals = JournalStorage.get_all_journals();
+    for (let i = 0; i < all_journals.length; i++) {
+      if (all_journals[i].id === id) {
+        all_journals[i].title = title;
+        all_journals[i].comment = comment;
+        all_journals[i].code = code;
+        all_journals[i].tags = tags;
+        break;
+      }
+    }
+    // set the new list of all journal entries
+    localStorage.setItem(this.DATA_ARRAY_KEY, JSON.stringify(all_journals));
   }
 
   static get_journal(id) {
@@ -136,9 +154,11 @@ const API = {
          * @param {string} title - The title of the new journal.
          * @param {string} code - The code associated with the new journal.
          * @param {string} comment - A comment for the new journal.
+         * @param {Array} tags - An array of strings representing tags for the new journal.
+         *
          * @return {boolean} True if the journal was created successfully.
          */
-  create_journal: (title, code, comment) => JournalStorage.create_journal(title, code, comment),
+  create_journal: (title, code, comment, tags) => JournalStorage.create_journal(title, code, comment, tags),
 
   /**
          * Saves an existing journal.
@@ -146,9 +166,10 @@ const API = {
          * @param {string} title - The title of the journal.
          * @param {string} code - The code associated with the journal.
          * @param {string} comment - A comment for the journal.
+         * @param {Array} tags - An array of strings representing tags for the journal.
          * @return {boolean} True if the journal was saved successfully.
          */
-  save_journal: (id, title, code, comment) => JournalStorage.edit_journal(id, title, code, comment),
+  save_journal: (id, title, code, comment, tags) => JournalStorage.edit_journal(id, title, code, comment, tags),
 
   /**
          * Deletes a journal by ID.
@@ -175,9 +196,9 @@ const API = {
   },
 
   generate_dummy_data: () => {
-    API.create_journal('Journal 1', 'Code 1', 'Comment 1');
-    API.create_journal('Journal 2', 'Code 2', 'Comment 2');
-    API.create_journal('Journal 3', 'Code 3', 'Comment 3');
+    API.create_journal('Journal 1', 'Code 1', 'Comment 1', tags = []);
+    API.create_journal('Journal 2', 'Code 2', 'Comment 2', tags = ['tag1', 'tag2']);
+    API.create_journal('Journal 3', 'Code 3', 'Comment 3', tags = ['tag2', 'tag3']);
   },
 
 
