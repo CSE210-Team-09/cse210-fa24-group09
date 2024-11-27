@@ -4,7 +4,7 @@
 
 // const notes = API.get_all_journals();
 
-const notes = [{id:"1", title:"1", tags:["hey1"]}, {id:"1", title:"hy", tags:["hey2", "yo"]}, {id:"1", title:"jh", tags:["hey2"]}]
+const notes = [{id: '1', title: '1', tags: ['hey1']}, {id: '1', title: 'hy', tags: ['hey2', 'yo']}, {id: '1', title: 'jh', tags: ['hey2']}];
 // Function to display notes on the homepage
 
 function displayNotes(filteredNotes = notes) {
@@ -16,19 +16,19 @@ function displayNotes(filteredNotes = notes) {
     return;
   }
   filteredNotes.forEach((note) => {
-    const noteItem = document.createElement('li'); 
+    const noteItem = document.createElement('li');
     const titleDiv = document.createElement('div');
     titleDiv.textContent = note.title;
     noteItem.appendChild(titleDiv);
-    const tagsContainer = document.createElement("div");
-    tagsContainer.classList.add("tags-container");
-    note.tags.forEach(tag => {
-        const tagSpan = document.createElement("span");
-        tagSpan.textContent = tag;
-        tagSpan.classList.add("tag");
-        tagsContainer.appendChild(tagSpan);
+    const tagsContainer = document.createElement('div');
+    tagsContainer.classList.add('tags-container');
+    note.tags.forEach((tag) => {
+      const tagSpan = document.createElement('span');
+      tagSpan.textContent = tag;
+      tagSpan.classList.add('tag');
+      tagsContainer.appendChild(tagSpan);
     });
-    
+
     // Append tags container to the main container
     noteItem.appendChild(tagsContainer);
     noteItem.onclick = () => viewNoteDetails(note.id);
@@ -41,7 +41,7 @@ function filterNotes() {
   const searchTerm = document.getElementById('search-bar').value.toLowerCase();
 
   const filteredNotes = notes.filter((note) =>
-    note.title.toLowerCase().includes(searchTerm)||note.tags.some(tag => tag.toLowerCase().includes(searchTerm)));
+    note.title.toLowerCase().includes(searchTerm)||note.tags.some((tag) => tag.toLowerCase().includes(searchTerm)));
 
   displayNotes(filteredNotes);
 }
