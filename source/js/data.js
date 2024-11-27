@@ -11,7 +11,6 @@ const data_template = {
 };
 
 const DATA_INDEX = -1;
-``
 class DataIDGenerator {
   static DATA_INDEX_KEY = 'data_index';
 
@@ -60,11 +59,11 @@ class JournalStorage {
 
     const all_journals = JournalStorage.get_all_journals();
     all_journals.push(
-      {
-        id: new_entry.id,
-        title: new_entry.title,
-        tags: new_entry.tags,
-      },
+        {
+          id: new_entry.id,
+          title: new_entry.title,
+          tags: new_entry.tags,
+        },
     );
 
     // save journal to arrray of all journal entries
