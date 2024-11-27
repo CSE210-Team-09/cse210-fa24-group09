@@ -17,7 +17,20 @@ function displayNotes(filteredNotes = notes) {
   }
   filteredNotes.forEach((note) => {
     const noteItem = document.createElement('li'); 
-    noteItem.innerHTML = `${note.title}<br>Tags:[${note.tags.join(", ")}]`;
+    const titleDiv = document.createElement('div');
+    titleDiv.textContent = note.title;
+    noteItem.appendChild(titleDiv);
+    const tagsContainer = document.createElement("div");
+    tagsContainer.classList.add("tags-container");
+    note.tags.forEach(tag => {
+        const tagSpan = document.createElement("span");
+        tagSpan.textContent = tag;
+        tagSpan.classList.add("tag");
+        tagsContainer.appendChild(tagSpan);
+    });
+    
+    // Append tags container to the main container
+    noteItem.appendChild(tagsContainer);
     noteItem.onclick = () => viewNoteDetails(note.id);
     notesList.appendChild(noteItem);
   });
