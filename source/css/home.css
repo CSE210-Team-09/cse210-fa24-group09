@@ -1,90 +1,89 @@
 body {
-    /* font-family: "Times New Roman", Times, serif; */
-    font-family:  'Courier New', Courier, monospace;
-    margin: 20px;
-  }
-  
-  #list-container {
-    max-width: 600px;
-    margin: auto;
-  }
+  /* font-family: "Times New Roman", Times, serif; */
+  font-family: "Courier New", Courier, monospace;
+  margin: 20px;
+}
 
-  #title{
-    text-align: center;
-    font-weight: bold;
-    font-size: 30px;
-  }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .search-bar-container {
-    position: relative;
-    width: 30%;
-  }
-  
-  .search-bar-container .search-icon {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 18px;
-    color: #aaa;
-  }
-  
-  .search-bar-container input {
-    font-family:  'Courier New', Courier, monospace;
-    width: 100%;
-    padding: 20px 20px 20px 35px; /* Add padding-left for the icon */
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    outline: none;
-  }
-  
-  .search-bar-container input:focus {
-    border-color: #28a745;
-  }
-  
-  .header button {
-    padding: 20px;
-    font-size: 16px;
-    font-family:  'Courier New', Courier, monospace;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .header button:hover {
-    background-color: #218838;
-  }
-  
-  .notes-list {
-    list-style: none;
-    padding:0;
-    max-height: 80vh;
-    overflow-y: auto;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .notes-list li {
-    padding: 20px;
-    border-bottom: 1px solid #ddd;
-    cursor: pointer;
-  }
-  
-  .notes-list li:hover {
-    background-color: #f8f9fa;
-  }
-  
-  .notes-list li:last-child {
-    border-bottom: none;
-  }
-  
+#list-container {
+  max-width: 600px;
+  margin: auto;
+}
+
+#title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-bar-container {
+  position: relative;
+  width: 30%;
+}
+
+.search-bar-container .search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #aaa;
+}
+
+.search-bar-container input {
+  font-family: "Courier New", Courier, monospace;
+  width: 100%;
+  padding: 20px 20px 20px 35px; /* Add padding-left for the icon */
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.search-bar-container input:focus {
+  border-color: #28a745;
+}
+
+.header button {
+  padding: 20px;
+  font-size: 16px;
+  font-family: "Courier New", Courier, monospace;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.header button:hover {
+  background-color: #218838;
+}
+
+.notes-list {
+  list-style: none;
+  padding: 0;
+  max-height: 80vh;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.notes-list li {
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.notes-list li:hover {
+  background-color: #f8f9fa;
+}
+
+.notes-list li:last-child {
+  border-bottom: none;
+}
