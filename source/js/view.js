@@ -2,6 +2,7 @@
 const codeContainer = document.getElementById('code-container');
 const commentContainer = document.getElementById('comment-container');
 const titleContainer = document.getElementById('title-container');
+const tagContainer = document.getElementById('tag-container');
 
 /**
  * Retrieves the value of the "id" query parameter from the current URL.
@@ -33,10 +34,12 @@ function loadNoteById(noteId) {
   codeContainer.innerHTML = ''; // Clear the container
   commentContainer.innerHTML = ''; // Clear the container
   titleContainer.innerHTML = ''; // Clear the container
+  tagContainer.innerHTML = ''; // Clear the container
 
   if (!note) {
     // Display an error message if the note is not found
     titleContainer.innerHTML = `<h2>Note not found.</h2>`;
+    tagContainer.innerHTML = `<h2>Note not found.</h2>`;
     codeContainer.innerHTML = `<p>Note not found.</p>`;
     return;
   }
@@ -45,6 +48,16 @@ function loadNoteById(noteId) {
   titleContainer.innerHTML = `<h2>${note.title}</h2>`;
   codeContainer.innerHTML = `<p>${note.code}</p>`;
   commentContainer.innerHTML = `<p>${note.comment}</p>`;
+  if (note.tags && note.tags.length > 0) {
+    note.tags.forEach((tag) => {
+      const tagElement = document.createElement('span');
+      tagElement.textContent = tag;
+      tagElement.classList.add('tag'); // Add a class for styling purposes
+      tagContainer.appendChild(tagElement);
+    });
+  } else {
+    tagContainer.innerHTML = '<p>No tags available.</p>';
+  }
 }
 
 // Go back home
