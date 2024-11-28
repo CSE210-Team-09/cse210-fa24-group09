@@ -1,4 +1,4 @@
-name: Generate JSDoc Documentation
+name: Creating GH_page with JSDoc Documentation
 
 on:
   push:
