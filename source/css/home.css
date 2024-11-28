@@ -1,13 +1,8 @@
 body {
-    /* font-family: "Times New Roman", Times, serif; */
-    font-family:  'Courier New', Courier, monospace;
-    margin: 20px;
-  }
-  
-  #list-container {
-    max-width: 600px;
-    margin: auto;
-  }
+  /* font-family: "Times New Roman", Times, serif; */
+  font-family: "Courier New", Courier, monospace;
+  margin: 20px;
+}
 
   #title{
     text-align: center;
@@ -116,4 +111,9 @@ body {
     border-radius: 12px;
     font-size: 0.9em;
     white-space: nowrap;
+}
+
+#list-container {
+  max-width: 600px;
+  margin: auto;
 }
