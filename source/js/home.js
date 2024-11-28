@@ -1,10 +1,9 @@
 // Sample data
 
-// API.init(false);
+API.init(true);
+const notes = API.get_all_journals();
 
-// const notes = API.get_all_journals();
-
-const notes = [{id: '1', title: '1', tags: ['hey1']}, {id: '1', title: 'hy', tags: ['hey2', 'yo']}, {id: '1', title: 'jh', tags: ['hey2']}];
+// const notes = [{id: '1', title: '1', tags: ['hey1']}, {id: '1', title: 'hy', tags: ['hey2', 'yo']}, {id: '1', title: 'jh', tags: ['hey2']}];
 // Function to display notes on the homepage
 
 function displayNotes(filteredNotes = notes) {
