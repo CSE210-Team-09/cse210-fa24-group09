@@ -15,9 +15,9 @@ function getQueryParam() {
  */
 
 function load_containers(note) {
-  const codeContainer = document.getElementById('title-input');
-  const commentContainer = document.getElementById('code-input');
-  const titleContainer = document.getElementById('comment-input');
+  const codeContainer = document.getElementById('code-input');
+  const commentContainer = document.getElementById('comment-input');
+  const titleContainer = document.getElementById('title-input');
 
   const valid_note = note !== null;
 
@@ -42,8 +42,8 @@ function load_listeners() {
 function init_edit() {
   // const id = getQueryParam();
 
-
-  const note_id = 1; // change from getting the id from the url
+  const note_id = parseInt(getQueryParam(), 10); 
+  // const note_id = 1; // change from getting the id from the url
   load_listeners();
 
   // Fetch notes from local storage
@@ -59,8 +59,9 @@ function save_note() {
   const code = document.getElementById('code-input').value;
   const comment = document.getElementById('comment-input').value;
 
-  const note_id = 1;
-  API.save_journal(note_id, title, code, comment);
+  const note_id = parseInt(getQueryParam(), 10); 
+  // const note_id = 1;
+  API.save_journal(note_id, title, code, comment, note_id.tags);
   redirect_page('view', note_id);
 }
 

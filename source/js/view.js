@@ -73,7 +73,7 @@ function goBackHome() {
  * Redirects the user to the edit page for the note.
  */
 function editNote() {
-  window.location.href = '../html/edit.html';
+  window.location.href = `../html/edit.html?id=${id}`;
 }
 
 // Delete note
