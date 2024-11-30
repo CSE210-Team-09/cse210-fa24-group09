@@ -1,0 +1,55 @@
+name: Creating GH_page with JSDoc Documentation
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18  # Specify the Node.js version
+
+    - name: Install JSDoc
+      run: npm install -g jsdoc
+
+    - name: Generate JSDoc
+      run: jsdoc source/js -d source/docs
+    
+    # Upload build output as an artifact
+    - name: Upload artifact for GitHub Pages
+      id: deployment
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: ./source
+
+  # Deploy job
+  deploy:
+    needs: build-docs # Only run this job if the build job succeeds
+    permissions:
+      pages: write      # Grant permission to write to GitHub Pages
+      id-token: write   # Grant permission to verify the deployment origin
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
