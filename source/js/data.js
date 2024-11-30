@@ -59,11 +59,11 @@ class JournalStorage {
 
     const all_journals = JournalStorage.get_all_journals();
     all_journals.push(
-        {
-          id: new_entry.id,
-          title: new_entry.title,
-          tags: new_entry.tags,
-        },
+      {
+        id: new_entry.id,
+        title: new_entry.title,
+        tags: new_entry.tags,
+      },
     );
 
     // save journal to arrray of all journal entries
@@ -72,12 +72,13 @@ class JournalStorage {
     return true;
   }
 
-  static edit_journal(id, title, comment, code, tags) {
+  static edit_journal(id, title, code, comment, tags) {
     const journal = JournalStorage.get_journal(id);
     journal.title = title;
     journal.comment = comment;
     journal.code = code;
     journal.tags = tags;
+    console.log('journal', journal);
 
     localStorage.setItem(id.toString(), JSON.stringify(journal));
 
