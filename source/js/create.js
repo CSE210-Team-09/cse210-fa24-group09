@@ -20,7 +20,8 @@ function saveAndReturn() {
   // Need to call create_journal from data.js to pass the information over
   if (API.create_journal(title, code, comment, tagsArr)) {
     alert('Note created successfully!');
-    goHome();
+    noteId = DataIDGenerator.get_data_index() - 1;
+    window.location.href = `../html/view.html?id=${noteId}`;
   } else {
     alert('Failed to create note.');
   }
