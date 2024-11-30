@@ -11,7 +11,7 @@ function getQueryParam() {
 /**
  * Given the note, load the containers with the note's content
  * @param {Object} note
- * @returns
+ * @returns {any} this function does not return anything meaningful
  */
 
 function load_containers(note) {
