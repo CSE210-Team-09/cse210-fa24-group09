@@ -5,7 +5,6 @@ Our journaling application requires a persistent storage solution to save user-c
 
 
 ## Considered Options
-
 | Feature/Requirement                 | localStorage                          | IndexedDB           |
 | ----------------------------------- | ------------------------------------- | ------------------- |
 | **Storage Limit**                   | ~5 to 10 MB (varies between browsers) | Browser-defined     |
@@ -15,7 +14,6 @@ Our journaling application requires a persistent storage solution to save user-c
 | **Advanced Querying**               | Not supported                         | Fully supported     |
 | **Persistence**                     | Across sessions                       | Across sessions     |
 | **Suitability for Structured Data** | Can only store strings                | Excellent           |
-
 
 
 - Client-Side Persistence: The data should remain accessible across user sessions without requiring a backend service.

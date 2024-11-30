@@ -1,4 +1,6 @@
-## Problem  
+# Integrate JSDocs and Github Pages
+
+## Context and Problem Statement
 We want to integrate GitHub Pages with JSDoc and enable viewing our application after GitHub Pages is deployed. The issue we encountered was the absence of an `index.html` file, which is required by the GitHub Pages deployment action in the deployment folder.  
 
 ## Considered Options  
