@@ -4,6 +4,7 @@
 We want to integrate GitHub Pages with JSDoc and enable viewing our application after GitHub Pages is deployed. The issue we encountered was the absence of an `index.html` file, which is required by the GitHub Pages deployment action in the deployment folder.  
 
 ## Considered Options  
+
 1. Add an `index.html` file inside the source folder and configure it to redirect to `source/html/home.html` after loading.  
 2. Rename `home.html` and move it directly into the source folder.  
 
