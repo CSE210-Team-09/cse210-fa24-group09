@@ -10,7 +10,7 @@
 
   <div id="button-container">
     <button id="cancel-button" onclick="goHome()">Cancel</button>
-    <button id="save-button" onclick="saveAndReturn()">Save and Return</button>
+    <button id="save-button" onclick="save()">Save</button>
   </div>
 
   <body>
@@ -23,6 +23,16 @@
         id="text-input"
         name="text-input"
         placeholder="Enter title here..."
+      />
+    </div>
+
+    <div id="tag-container">
+      <label for="tag-input">Tags:</label>
+      <input
+        type="text"
+        id="tag-input"
+        name="tag-input"
+        placeholder="Separate tags with a comma"
       />
     </div>
 

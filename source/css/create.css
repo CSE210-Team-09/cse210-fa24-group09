@@ -37,17 +37,26 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-
   flex-direction: row;
   margin-top: 50px;
 }
 
-#title-container label {
+#tag-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+#title-container label,
+#tag-container label {
   font-weight: bold;
   margin-right: 10px;
 }
 
-#title-container input[type="text"] {
+#title-container input[type="text"],
+#tag-container input[type="text"] {
   padding: 10px;
   font-size: 16px;
   width: 300px;
@@ -58,7 +67,8 @@ body {
   margin-bottom: 10px;
 }
 
-#title-container button {
+#title-container button,
+#tag-container button {
   padding: 10px 20px;
   font-size: 16px;
   border: none;
