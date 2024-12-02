@@ -59,11 +59,11 @@ class JournalStorage {
 
     const all_journals = JournalStorage.get_all_journals();
     all_journals.push(
-      {
-        id: new_entry.id,
-        title: new_entry.title,
-        tags: new_entry.tags,
-      },
+        {
+          id: new_entry.id,
+          title: new_entry.title,
+          tags: new_entry.tags,
+        },
     );
 
     // save journal to arrray of all journal entries
