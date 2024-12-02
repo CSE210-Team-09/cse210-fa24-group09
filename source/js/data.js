@@ -1,5 +1,5 @@
 /**
- * Template for journal entry
+ * This is the tempalte of what a journal entry should look like.
  */
 const data_template = {
   id: -1,
@@ -59,17 +59,17 @@ class JournalStorage {
 
     const all_journals = JournalStorage.get_all_journals();
     all_journals.push(
-        {
-          id: new_entry.id,
-          title: new_entry.title,
-          tags: new_entry.tags,
-        },
+      {
+        id: new_entry.id,
+        title: new_entry.title,
+        tags: new_entry.tags,
+      },
     );
 
     // save journal to arrray of all journal entries
     localStorage.setItem(this.DATA_ARRAY_KEY, JSON.stringify(all_journals));
 
-    return true;
+    return new_entry.id;
   }
 
   static edit_journal(id, title, code, comment, tags) {

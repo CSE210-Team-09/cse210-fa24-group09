@@ -18,8 +18,9 @@ function save() {
   const tagsArr = tags && tags.trim() !== '' ? tags.split(',').map((tag) => tag.trim()) : [];
 
   // Need to call create_journal from data.js to pass the information over
-  if (API.create_journal(title, code, comment, tagsArr)) {
-    noteId = DataIDGenerator.get_data_index() - 1;
-    window.location.href = `../html/view.html?id=${noteId}`;
+  const id = API.create_journal(title, code, comment, tagsArr);
+
+  if (id) {
+    window.location.href = `../html/view.html?id=${id}`;
   }
 }
