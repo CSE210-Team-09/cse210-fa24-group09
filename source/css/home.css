@@ -12,7 +12,7 @@ body {
 
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   align-items: center;
   margin-bottom: 20px;
 }
@@ -25,6 +25,7 @@ body {
 .search-bar-container {
   position: relative;
   width: 30%;
+  margin-right: 5%;
 }
 
 .search-bar-container .search-icon {
@@ -123,13 +124,14 @@ body {
 }
 
 .multi-select-dropdown {
-  position: relative;
+  /**position: relative;**/
   display: inline-block;
+  margin-right: 48%;
 }
 
 #dropdown-btn {
   color: black;
-  padding: 10px 20px;
+  padding: 20px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
