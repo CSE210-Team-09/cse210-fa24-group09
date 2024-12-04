@@ -1,3 +1,6 @@
+/**
+   * This function routes back to the home page.
+   */
 function goHome() {
   window.location.href = '../html/home.html';
 }
@@ -11,8 +14,8 @@ function save() {
   const code = document.getElementById('code-input').value;
   const comment = document.getElementById('comment-input').value;
 
-  const tags = document.getElementById('tag-input').value;
-  const tagsArr = tags && tags.trim() !== '' ? tags.split(',').map((tag) => tag.trim()) : [];
+  const tagsInput = document.getElementById('tag-input').value;
+  let tagsArr = [];
 
   // Input validation for the title
   if (title === '') {
@@ -20,6 +23,23 @@ function save() {
   } else if (title.length > 40) {
     alert('Title cannot exceed 40 characters. Please shorten your title.');
     return; // Stop the save function if the title is too long
+  }
+
+  // Input validation for tags
+  if (tagsInput && tagsInput.trim() !== '') {
+    tagsArr = tagsInput
+      .split(',')
+      .map((tag) => tag.trim()) // Remove leading/trailing spaces
+      .filter((tag) => tag !== '') // Remove empty tags
+      .filter((tag, index, self) => self.indexOf(tag) === index); // Remove duplicates
+
+    // Check max character length for each tag
+    for (const tag of tagsArr) {
+      if (tag.length > 40) {
+        alert(`Tag "${tag}" exceeds the maximum length of 40 characters. Please shorten it.`);
+        return; // Stop the save function if any tag is too long
+      }
+    }
   }
 
   // Need to call create_journal from data.js to pass the information over
