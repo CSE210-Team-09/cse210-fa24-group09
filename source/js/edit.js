@@ -55,9 +55,17 @@ function init_edit() {
 
 function save_note() {
   console.log('attemping to save');
-  const title = document.getElementById('title-input').value;
+  let title = document.getElementById('title-input').value.trim();
   const code = document.getElementById('code-input').value;
   const comment = document.getElementById('comment-input').value;
+
+  // Input validation for the title
+  if (title === '') {
+    title = 'Untitled'; // Default title
+  } else if (title.length > 40) {
+    alert('Title cannot exceed 40 characters. Please shorten your title.');
+    return; // Stop the save function if the title is too long
+  }
 
   const note_id = parseInt(getQueryParam(), 10);
   console.log(note_id);
