@@ -28,10 +28,10 @@ function save() {
   // Input validation for tags
   if (tagsInput && tagsInput.trim() !== '') {
     tagsArr = tagsInput
-      .split(',')
-      .map((tag) => tag.trim()) // Remove leading/trailing spaces
-      .filter((tag) => tag !== '') // Remove empty tags
-      .filter((tag, index, self) => self.indexOf(tag) === index); // Remove duplicates
+        .split(',')
+        .map((tag) => tag.trim()) // Remove leading/trailing spaces
+        .filter((tag) => tag !== '') // Remove empty tags
+        .filter((tag, index, self) => self.indexOf(tag) === index); // Remove duplicates
 
     // Check max character length for each tag
     for (const tag of tagsArr) {
