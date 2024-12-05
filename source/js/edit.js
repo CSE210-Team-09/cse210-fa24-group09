@@ -61,7 +61,7 @@ function save_note() {
   const comment = document.getElementById('comment-input').value;
   const tags = document.getElementById('tag-input').value;
   const tagsArr = tags && tags.trim() !== '' ? tags.split(',').map((tag) => tag.trim()) : [];
-  
+
   // Input validation for the title
   if (title === '') {
     title = 'Untitled'; // Default title
@@ -70,7 +70,7 @@ function save_note() {
     return; // Stop the save function if the title is too long
   }
 
-    // Input validation for tags
+  // Input validation for tags
   if (tags && tags.trim() !== '') {
     // Check max character length for each tag
     for (const tag of tagsArr) {
