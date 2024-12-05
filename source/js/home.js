@@ -38,9 +38,13 @@ function displayNotes(filteredNotes = notes) {
 // Function to filter notes based on the search bar input
 function filterNotes() {
   const searchTerm = document.getElementById('search-bar').value.toLowerCase();
+  const selectedTags = Array.from(document.querySelectorAll('#dropdown-options input[type="checkbox"]:checked')).map((checkbox) => checkbox.value);
 
-  const filteredNotes = notes.filter((note) =>
-    note.title.toLowerCase().includes(searchTerm)||note.tags.some((tag) => tag.toLowerCase().includes(searchTerm)));
+  const filteredNotes = notes.filter((note) => {
+    const matchesTitle = note.title.toLowerCase().includes(searchTerm);
+    const matchesTags = selectedTags.length === 0 || selectedTags.every((tag) => note.tags.includes(tag));
+    return matchesTitle && matchesTags;
+  });
 
   displayNotes(filteredNotes);
 }
@@ -57,11 +61,32 @@ function viewNoteDetails(noteId) {
   window.location.href = `../html/view.html?id=${noteId}`;
 }
 
+function populateTagsDropdown() {
+  const dropdownOptions = document.getElementById('dropdown-options');
+  const allTags = [...new Set(notes.flatMap((note) => note.tags))]; // Unique tags
+
+  dropdownOptions.innerHTML = ''; // Clear existing options
+
+  allTags.forEach((tag) => {
+    const option = document.createElement('label');
+    option.innerHTML = `
+      <input type="checkbox" value="${tag}" onchange="filterNotes()"> ${tag}
+    `;
+    dropdownOptions.appendChild(option);
+  });
+}
+
+document.getElementById('dropdown-btn').addEventListener('click', () => {
+  const dropdown = document.querySelector('.multi-select-dropdown');
+  dropdown.classList.toggle('open');
+});
+
 // Placeholder function for creating a new note
 function createNewNote() {
   window.location.href = `../html/create.html`;
 }
 
-// Initial display
-displayNotes();
 
+// Initial display
+populateTagsDropdown(); // Populate the tags dropdown
+displayNotes();
