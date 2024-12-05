@@ -61,13 +61,24 @@ function save_note() {
   const comment = document.getElementById('comment-input').value;
   const tags = document.getElementById('tag-input').value;
   const tagsArr = tags && tags.trim() !== '' ? tags.split(',').map((tag) => tag.trim()) : [];
-
+  
   // Input validation for the title
   if (title === '') {
     title = 'Untitled'; // Default title
   } else if (title.length > 40) {
     alert('Title cannot exceed 40 characters. Please shorten your title.');
     return; // Stop the save function if the title is too long
+  }
+
+    // Input validation for tags
+  if (tags && tags.trim() !== '') {
+    // Check max character length for each tag
+    for (const tag of tagsArr) {
+      if (tag.length > 15) {
+        alert(`Tag "${tag}" exceeds the maximum length of 15 characters. Please shorten it.`);
+        return; // Stop the save function if any tag is too long
+      }
+    }
   }
 
   const note_id = parseInt(getQueryParam(), 10);
