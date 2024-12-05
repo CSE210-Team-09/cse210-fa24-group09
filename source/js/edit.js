@@ -81,5 +81,28 @@ function redirect_page(page, note_id = null) {
   window.location.href = url;
 }
 
+/**
+ * This function enables the Tab key to insert indentation rather than moving to the next text box
+ * @param {string} textAreaID - ID of text area
+ */
+function enableTabIndent(textAreaID) {
+  const input = document.getElementById(textAreaID);
+
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      const start = this.selectionStart;
+      const end = this.selectionEnd;
+      const indent = '   ';
+
+      this.value = this.value.substring(0, start) + indent + this.value.substring(end);
+      this.selectionStart = this.selectionEnd = start + indent.length;
+    }
+  })
+}
+
+enableTabIndent('code-input');
+enableTabIndent('comment-input')
+
 
 init_edit();
