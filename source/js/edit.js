@@ -101,7 +101,7 @@ function enableTabIndent(textAreaID) {
       e.preventDefault();
       const start = e.target.selectionStart;
       const end = e.target.selectionEnd;
-      const indent = '   ';
+      const indent = '    ';
 
       e.target.value = e.target.value.substring(0, start) + indent + e.target.value.substring(end);
       e.target.selectionStart = e.target.selectionEnd = start + indent.length;
