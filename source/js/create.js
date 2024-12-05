@@ -31,18 +31,18 @@ function save() {
 function enableTabIndent(textAreaID) {
   const input = document.getElementById(textAreaID);
 
-  input.addEventListener('keydown', function (e) {
+  input.addEventListener('keydown', function(e) {
     if (e.key === 'Tab') {
       e.preventDefault();
-      const start = this.selectionStart;
-      const end = this.selectionEnd;
+      const start = e.target.selectionStart;
+      const end = e.target.selectionEnd;
       const indent = '   ';
 
-      this.value = this.value.substring(0, start) + indent + this.value.substring(end);
-      this.selectionStart = this.selectionEnd = start + indent.length;
+      e.target.value = e.target.value.substring(0, start) + indent + e.target.value.substring(end);
+      e.target.selectionStart = e.target.selectionEnd = start + indent.length;
     }
-  })
+  });
 }
 
 enableTabIndent('code-input');
-enableTabIndent('comment-input')
+enableTabIndent('comment-input');
