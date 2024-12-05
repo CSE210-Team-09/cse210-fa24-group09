@@ -35,8 +35,8 @@ function save() {
 
     // Check max character length for each tag
     for (const tag of tagsArr) {
-      if (tag.length > 40) {
-        alert(`Tag "${tag}" exceeds the maximum length of 40 characters. Please shorten it.`);
+      if (tag.length > 15) {
+        alert(`Tag "${tag}" exceeds the maximum length of 15 characters. Please shorten it.`);
         return; // Stop the save function if any tag is too long
       }
     }
