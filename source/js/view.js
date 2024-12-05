@@ -29,34 +29,55 @@ const id = parseInt(getQueryParam(), 10); // getQueryParam();
  * @param {number} noteId - The ID of the note to load.
  */
 function loadNoteById(noteId) {
-  // retrieve note from the local data using API
-  note = API.get_journal(noteId);
-  codeContainer.innerHTML = ''; // Clear the container
-  commentContainer.innerHTML = ''; // Clear the container
-  titleContainer.innerHTML = ''; // Clear the container
-  tagContainer.innerHTML = ''; // Clear the container
-
+  const note = API.get_journal(noteId);
   if (!note) {
-    // Display an error message if the note is not found
-    titleContainer.innerHTML = `<h2>Note not found.</h2>`;
-    tagContainer.innerHTML = `<h2>Note not found.</h2>`;
-    codeContainer.innerHTML = `<p>Note not found.</p>`;
+    titleContainer.textContent = 'Note not found.';
     return;
   }
 
-  // Populate the containers with the note's content
-  titleContainer.innerHTML = `<h2>${note.title}</h2>`;
-  codeContainer.innerHTML = `<p>${note.code}</p>`;
-  commentContainer.innerHTML = `<p>${note.comment}</p>`;
+  // Title (no label)
+  const titleTextarea = document.createElement('textarea');
+  titleTextarea.id = 'title';
+  titleTextarea.value = note.title;
+  titleTextarea.rows = 2;
+  titleTextarea.readOnly = true;
+  titleContainer.appendChild(titleTextarea);
+
+  // Code (with label)
+  const codeLabel = document.createElement('label');
+  codeLabel.setAttribute('for', 'code');
+  codeLabel.textContent = 'Code';
+  const codeTextarea = document.createElement('textarea');
+  codeTextarea.id = 'code';
+  codeTextarea.value = note.code;
+  codeTextarea.rows = 10;
+  codeTextarea.readOnly = true;
+  codeContainer.appendChild(codeLabel);
+  codeContainer.appendChild(codeTextarea);
+
+  // Comment (with label)
+  const commentLabel = document.createElement('label');
+  commentLabel.setAttribute('for', 'comment');
+  commentLabel.textContent = 'Comment';
+  const commentTextarea = document.createElement('textarea');
+  commentTextarea.id = 'comment';
+  commentTextarea.value = note.comment;
+  commentTextarea.rows = 5;
+  commentTextarea.readOnly = true;
+  commentContainer.appendChild(commentLabel);
+  commentContainer.appendChild(commentTextarea);
+
+  // Tags (as individual patches)
   if (note.tags && note.tags.length > 0) {
     note.tags.forEach((tag) => {
       const tagElement = document.createElement('span');
       tagElement.textContent = tag;
-      tagElement.classList.add('tag'); // Add a class for styling purposes
       tagContainer.appendChild(tagElement);
     });
   } else {
-    tagContainer.innerHTML = '<p>No tags available.</p>';
+    const noTagsMessage = document.createElement('p');
+    noTagsMessage.textContent = 'No tags available.';
+    tagContainer.appendChild(noTagsMessage);
   }
 }
 
