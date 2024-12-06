@@ -3,7 +3,6 @@
  * alert if the note is saved successfully, or if an error occurred.
  */
 function save_from_create() {
-
   // Get the input values
   const journal = get_journal_elements();
 
@@ -31,7 +30,6 @@ function load_create_listeners() {
   document.getElementById('cancel-button').addEventListener('click', () => redirect_page('home'));
   enable_tab_indent('code-input');
   enable_tab_indent('comment-input');
-
 }
 document.addEventListener('DOMContentLoaded', (event) => {
   init_create();
