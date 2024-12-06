@@ -71,3 +71,5 @@ function enableTabIndent(textAreaID) {
 
 enableTabIndent('code-input');
 enableTabIndent('comment-input');
+
+module.exports = save;
