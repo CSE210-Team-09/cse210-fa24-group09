@@ -76,7 +76,7 @@ function validate_tags(tags, alert = true) {
  * @return {Object} journal object
  */
 function get_journal_elements() {
-  const title = document.getElementById('title-input').value;
+  const title = document.getElementById('title-input').value.trim();
   const code = document.getElementById('code-input').value;
   const comment = document.getElementById('comment-input').value;
   const tags = document.getElementById('tag-input').value;
