@@ -6,19 +6,20 @@ DEFAULT_TITLE = 'Untitled';
 
 // This file contains common functions that the others use
 /**
- * This function gets the elements from the page and saves the note given the available infromation in the page
+ * This function gets the elements from the page and saves the note given the available infromation in the page. Will raise an alert if the title is too long.
  * @param {number} note_id
+ * @return {boolean} true if the note was saved successfully, false otherwise
  */
 
 function save_note(note_id) {
   const journal = get_journal_elements();
   journal.title = validate_title(journal.title);
   if (journal.title === null) {
-    return;
+    return false;
   }
   journal.tags = validate_tags(journal.tags);
   if (journal.tags === null) {
-    return;
+    return false;
   }
   console.log(note_id);
   console.log(journal);
@@ -29,6 +30,8 @@ function save_note(note_id) {
       comment = journal.comment,
       tags = journal.tags,
   );
+
+  return true;
 }
 /**
  * Validate the title of the journal
@@ -44,7 +47,7 @@ function validate_title(title, alert = true) {
 
   if (title.length > TITLE_MAX_LENGTH) {
     if (alert) {
-      alert(TITLE_MAX_LEN_EXCEEDED_MSG);
+      window.alert(TITLE_MAX_LEN_EXCEEDED_MSG);
     }
     return null;
   }
@@ -62,7 +65,7 @@ function validate_tags(tags, alert = true) {
   for (const tag of tags) {
     if (tag.length > TAG_MAX_LENGTH) {
       if (alert) {
-        alert(`Tag "${tag}" exceeds the maximum length of ${TAG_MAX_LENGTH} characters. Please shorten it.`);
+        window.alert(`Tag "${tag}" exceeds the maximum length of ${TAG_MAX_LENGTH} characters. Please shorten it.`);
       }
       return null;
     }

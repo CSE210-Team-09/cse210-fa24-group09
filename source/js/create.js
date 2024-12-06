@@ -20,11 +20,16 @@ function save_from_create() {
   redirect_page('view', note_id);
 }
 
-
+/**
+ * Initialize the create page by loading event listeners.
+ */
 function init_create() {
   load_create_listeners();
 }
 
+/**
+ * Enables the save button, cancel button, and use of the tab key to indent text.
+ */
 function load_create_listeners() {
   document.getElementById('save-button').addEventListener('click', () => save_from_create());
   document.getElementById('cancel-button').addEventListener('click', () => redirect_page('home'));

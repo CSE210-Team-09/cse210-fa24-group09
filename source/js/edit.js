@@ -48,7 +48,10 @@ function init_edit() {
 }
 
 function save_note_from_edit(note_id) {
-  save_note(note_id);
+  const successful_save = save_note(note_id);
+  if (!successful_save) {
+    return;
+  }
   redirect_page('view', note_id);
 }
 
