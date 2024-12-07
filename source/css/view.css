@@ -25,7 +25,7 @@ h1 {
 
 #title-container textarea {
   font-family: "Courier New", Courier, monospace;
-  font-size: 1.5em; /* Adjust for heading-like appearance */
+  font-size: 2em; /* Adjust for heading-like appearance */
   font-weight: bold;
   text-align: center;
   border: none;
@@ -53,17 +53,13 @@ h1 {
 
 #code-container {
   list-style: none;
-  max-height: 40vh;
+  max-height: 70vh;
   overflow-y: auto;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
-  /**border: 2px solid #ccc;**/
-  /**padding: 20px;**/
-  /**border-radius: 10px;**/
   background-color: #f9f9f9;
-  /**box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);**/
   margin-bottom: 20px;
 }
 
