@@ -69,7 +69,7 @@ class JournalStorage {
     // save journal to arrray of all journal entries
     localStorage.setItem(this.DATA_ARRAY_KEY, JSON.stringify(all_journals));
 
-    return new_entry.id;
+    return true;
   }
 
   static edit_journal(id, title, code, comment, tags) {

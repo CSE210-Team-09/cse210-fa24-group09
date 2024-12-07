@@ -9,19 +9,19 @@
   </head>
 
   <div id="button-container">
-    <button id="cancel-button">Cancel</button>
-    <button id="save-button">Save</button>
+    <button id="cancel-button" onclick="goHome()">Cancel</button>
+    <button id="save-button" onclick="save()">Save</button>
   </div>
 
   <body>
     <div id="title">Code Snippet Saver</div>
 
     <div id="title-container">
-      <label for="title-input">New Note Title:</label>
+      <label for="text-input">New Note Title:</label>
       <input
         type="text"
-        id="title-input"
-        name="title-input"
+        id="text-input"
+        name="text-input"
         placeholder="Enter title here..."
       />
     </div>
@@ -51,8 +51,8 @@
         placeholder="Write your comments here..."
       ></textarea>
     </div>
-    <script src="../js/data.js"></script>
-    <script src="../js/util.js"></script>
+
     <script src="../js/create.js"></script>
+    <script src="../js/data.js"></script>
   </body>
 </html>

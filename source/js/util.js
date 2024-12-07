@@ -1,85 +1,20 @@
-TITLE_MAX_LENGTH = 40;
-TAG_MAX_LENGTH = 15;
-TITLE_MAX_LEN_EXCEEDED_MSG = `Title cannot exceed ${TITLE_MAX_LENGTH} characters. Please shorten your title.`;
-DEFAULT_TITLE = 'Untitled';
-
-
 // This file contains common functions that the others use
 /**
- * This function gets the elements from the page and saves the note given the available infromation in the page. Will raise an alert if the title is too long.
+ * This function gets the elements from the page and saves the note given the available infromation in the page
  * @param {number} note_id
- * @return {boolean} true if the note was saved successfully, false otherwise
  */
 
 function save_note(note_id) {
   const journal = get_journal_elements();
-  journal.title = validate_title(journal.title);
-  if (journal.title === null) {
-    return false;
-  }
-  journal.tags = validate_tags(journal.tags);
-  if (journal.tags === null) {
-    return false;
-  }
-  console.log(note_id);
-  console.log(journal);
-  API.save_journal(
-      id = note_id,
-      title = journal.title,
-      code = journal.code,
-      comment = journal.comment,
-      tags = journal.tags,
-  );
-
-  return true;
+  API.save_journal(note_id, journal.title, journal.code, journal.comment, journal.tags);
 }
-/**
- * Validate the title of the journal
- *
- * @param {string} title
- * @param {boolean} [alert=false] alert - whether to show an alert if the title is too long
- * @return {string|null} the title if it is valid, null otherwise
- */
-function validate_title(title, alert = true) {
-  if (title === '') {
-    return DEFAULT_TITLE;
-  }
-
-  if (title.length > TITLE_MAX_LENGTH) {
-    if (alert) {
-      window.alert(TITLE_MAX_LEN_EXCEEDED_MSG);
-    }
-    return null;
-  }
-
-  return title;
-}
-/**
- * Validates an array of tags.
- *
- * @param {string[]} tags - An array of tag strings.
- * @param {boolean} [alert=true] - Whether to show an alert if a tag is invalid.
- * @return {string[]|null} - Array of tags if they are valid, null otherwise.
- */
-function validate_tags(tags, alert = true) {
-  for (const tag of tags) {
-    if (tag.length > TAG_MAX_LENGTH) {
-      if (alert) {
-        window.alert(`Tag "${tag}" exceeds the maximum length of ${TAG_MAX_LENGTH} characters. Please shorten it.`);
-      }
-      return null;
-    }
-  }
-  return tags;
-}
-
 
 /**
  * Get Journal journal elements on page and parse
  * @return {Object} journal object
  */
 function get_journal_elements() {
-  const title = document.getElementById('title-input').value.trim();
+  const title = document.getElementById('text-input').value;
   const code = document.getElementById('code-input').value;
   const comment = document.getElementById('comment-input').value;
   const tags = document.getElementById('tag-input').value;
@@ -139,24 +74,4 @@ function get_id_from_url() {
   }
 
   return null;
-}
-
-/**
- * This function enables the Tab key to insert indentation rather than moving to the next text box
- * @param {string} textAreaID - ID of text area
- */
-function enable_tab_indent(textAreaID) {
-  const input = document.getElementById(textAreaID);
-
-  input.addEventListener('keydown', function(e) {
-    if (e.key === 'Tab') {
-      e.preventDefault();
-      const start = e.target.selectionStart;
-      const end = e.target.selectionEnd;
-      const indent = '    ';
-
-      e.target.value = e.target.value.substring(0, start) + indent + e.target.value.substring(end);
-      e.target.selectionStart = e.target.selectionEnd = start + indent.length;
-    }
-  });
 }
