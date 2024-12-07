@@ -47,6 +47,7 @@ function filterNotes() {
   });
 
   displayNotes(filteredNotes);
+  return filteredNotes;
 }
 
 // Add listener for the Enter key in the search bar
@@ -90,3 +91,5 @@ function createNewNote() {
 // Initial display
 populateTagsDropdown(); // Populate the tags dropdown
 displayNotes();
+
+module.exports = filterNotes;
