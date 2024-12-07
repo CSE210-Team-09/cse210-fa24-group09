@@ -16,8 +16,9 @@ function save_from_create() {
   }
 
   const note_id = API.create_journal(journal.title, journal.code, journal.comment, journal.tags);
-
-  redirect_page('view', note_id);
+  if (note_id) {
+    redirect_page('view', note_id);
+  }
 }
 
 /**
