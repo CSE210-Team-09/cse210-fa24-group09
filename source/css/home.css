@@ -122,8 +122,16 @@ body {
   margin: auto;
 }
 
+.tagtitle{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .multi-select-dropdown {
-  /**position: relative;**/
+  left: 0;
+  position: absolute;
   display: inline-block;
 }
 
