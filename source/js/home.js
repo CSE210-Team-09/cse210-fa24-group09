@@ -76,9 +76,22 @@ function populateTagsDropdown() {
   });
 }
 
-document.getElementById('dropdown-btn').addEventListener('click', () => {
+// Add click event to the dropdown button
+document.getElementById('dropdown-btn').addEventListener('click', (event) => {
   const dropdown = document.querySelector('.multi-select-dropdown');
-  dropdown.classList.toggle('open');
+  dropdown.classList.toggle('open'); // Toggle the dropdown's visibility
+  event.stopPropagation(); // Prevent the event from bubbling up
+});
+
+// Add event listener to close the dropdown when clicking outside
+document.addEventListener('click', (event) => {
+  const dropdown = document.querySelector('.multi-select-dropdown');
+  const dropdownBtn = document.getElementById('dropdown-btn');
+
+  // Close the dropdown if the click is outside the dropdown and the button
+  if (!dropdown.contains(event.target) && event.target !== dropdownBtn) {
+    dropdown.classList.remove('open');
+  }
 });
 
 // Placeholder function for creating a new note
