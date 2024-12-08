@@ -1,7 +1,7 @@
 # Team Meeting Notes - Sprint 4 Review Meeting
 
 **Date: Friday 12.6.2024**\
-**Time: 5:00 pm - 7:30 pm**\
+**Time: 6:30 pm - 7:00 pm**\
 **Meeting Format: In-Person (CSE Basement)**
 
 ## Attendance
