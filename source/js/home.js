@@ -1,19 +1,19 @@
-let notes
+let notes;
 
 /**
  * Initializes the homepage by setting up the API, fetching notes, and displaying them.
  */
-function init_home(){
+function init_home() {
   API.init(true);
   notes = API.get_all_journals();
-  displayNotes(notes)
+  displayNotes(notes);
 }
 
 // Function to display notes on the homepage
 /**
  * Displays a list of notes on the homepage.
- * @param {Array}} filteredNotes - Array of notes to be displayed. Defaults to all notes.
- * @returns {void}
+ * @param {Array} filteredNotes - Array of notes to be displayed. Defaults to all notes.
+ * @return {void}
  */
 function displayNotes(filteredNotes = notes) {
   const notesList = document.getElementById('notes-list');
@@ -101,11 +101,11 @@ function load_listeners() {
 
   // Add listener for the Enter key in the search bar
   document.getElementById('search-bar').addEventListener('keypress',
-    function (event) {
-      if (event.key === 'Enter') {
-        filterNotes();
-      }
-    });
+      function(event) {
+        if (event.key === 'Enter') {
+          filterNotes();
+        }
+      });
   document.getElementById('create-button').addEventListener('click', () => redirect_page('create'));
 }
 
@@ -113,5 +113,5 @@ function load_listeners() {
 document.addEventListener('DOMContentLoaded', (event) => {
   init_home();
   populateTagsDropdown();
-  load_listeners()
+  load_listeners();
 });

@@ -1,7 +1,6 @@
 /**
  * Given the note, load the containers with the note's content
  * @param {Object} note
- * @returns {any} this function does not return anything meaningful
  */
 function load_containers(note) {
   const codeContainer = document.getElementById('code-input');
@@ -52,7 +51,7 @@ function init_edit() {
 /**
  * Saves the current edits to the note and redirects to the view page.
  * @param {number} note_id - The ID of the note being edited
- * @returns {void}
+ * @return {void}
  */
 function save_note_from_edit(note_id) {
   const successful_save = save_note(note_id);
