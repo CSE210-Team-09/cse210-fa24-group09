@@ -1,9 +1,8 @@
 let notes
 
 /**
- * 
+ * Initializes the homepage by setting up the API, fetching notes, and displaying them.
  */
-
 function init_home(){
   API.init(true);
   notes = API.get_all_journals();
@@ -12,9 +11,9 @@ function init_home(){
 
 // Function to display notes on the homepage
 /**
- * 
- * @param {*} filteredNotes 
- * @returns 
+ * Displays a list of notes on the homepage.
+ * @param {Array}} filteredNotes - Array of notes to be displayed. Defaults to all notes.
+ * @returns {void}
  */
 function displayNotes(filteredNotes = notes) {
   const notesList = document.getElementById('notes-list');
@@ -47,7 +46,7 @@ function displayNotes(filteredNotes = notes) {
 
 // Function to filter notes based on the search bar input
 /**
- * 
+ * Filters notes based on the search bar input and selected tags, and displays the filtered results.
  */
 function filterNotes() {
   const searchTerm = document.getElementById('search-bar').value.toLowerCase();
@@ -63,7 +62,7 @@ function filterNotes() {
 }
 
 /**
- * 
+ * Populates the dropdown menu with unique tags from the notes.
  */
 function populateTagsDropdown() {
   const dropdownOptions = document.getElementById('dropdown-options');
@@ -79,7 +78,7 @@ function populateTagsDropdown() {
 }
 
 /**
- * 
+ * Loads event listeners for UI interactions such as dropdown toggling, search bar input, and button clicks.
  */
 function load_listeners() {
   // Add click event to the dropdown button
@@ -110,6 +109,7 @@ function load_listeners() {
   document.getElementById('create-button').addEventListener('click', () => redirect_page('create'));
 }
 
+// Executes when the DOM content is fully loaded. Initializes the homepage, populates the tags dropdown, and loads event listeners.
 document.addEventListener('DOMContentLoaded', (event) => {
   init_home();
   populateTagsDropdown();

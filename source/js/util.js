@@ -10,7 +10,6 @@ DEFAULT_TITLE = 'Untitled';
  * @param {number} note_id
  * @return {boolean} true if the note was saved successfully, false otherwise
  */
-
 function save_note(note_id) {
   const journal = get_journal_elements();
   journal.title = validate_title(journal.title);
@@ -33,6 +32,7 @@ function save_note(note_id) {
 
   return true;
 }
+
 /**
  * Validate the title of the journal
  *
@@ -54,6 +54,7 @@ function validate_title(title, alert = true) {
 
   return title;
 }
+
 /**
  * Validates an array of tags.
  *
@@ -72,7 +73,6 @@ function validate_tags(tags, alert = true) {
   }
   return tags;
 }
-
 
 /**
  * Get Journal journal elements on page and parse
@@ -110,7 +110,6 @@ function parse_tags(tags) {
   return trimmed_tags.split(',').map((tag) => tag.trim());
 }
 
-
 /**
  * Utility function to redirect to a page
  * @param {string} page (home, create, view, edit)
@@ -126,6 +125,7 @@ function redirect_page(page, note_id = null) {
 
   return url;
 }
+
 /**
  * Retrieves the value of the "id" query parameter from the current URL.
  *
