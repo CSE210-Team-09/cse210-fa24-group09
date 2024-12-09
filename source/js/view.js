@@ -50,7 +50,7 @@ function loadNoteById(noteId) {
   const codeTextarea = document.createElement('textarea');
   codeTextarea.id = 'code';
   codeTextarea.value = note.code;
-  codeTextarea.rows = 10;
+  codeTextarea.rows = 17;
   codeTextarea.readOnly = true;
   codeContainer.appendChild(codeLabel);
   codeContainer.appendChild(codeTextarea);
@@ -62,7 +62,7 @@ function loadNoteById(noteId) {
   const commentTextarea = document.createElement('textarea');
   commentTextarea.id = 'comment';
   commentTextarea.value = note.comment;
-  commentTextarea.rows = 5;
+  commentTextarea.rows = 8;
   commentTextarea.readOnly = true;
   commentContainer.appendChild(commentLabel);
   commentContainer.appendChild(commentTextarea);
