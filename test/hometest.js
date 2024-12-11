@@ -1,13 +1,15 @@
+home:
+
 const puppeteer = require('puppeteer');
 const path = require('path');
 
 (async () => {
-  const browser = await puppeteer.launch({ headless: false }); // Set `headless: true` for CI/CD pipelines
+  const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
   const page = await browser.newPage();
 
   // Dynamically determine the absolute path to the home.html file
-  const homePath = path.resolve(__dirname, '../source/html/home.html'); // Adjust 'home.html' if it's in a different folder relative to this script
-  await page.goto(`file://${homePath}`);
+  const homePath = 'https://cse210-team-09.github.io/cse210-fa24-group09/html/home.html';
+  await page.goto(homePath);
 
   // Custom delay function
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -67,7 +69,10 @@ const path = require('path');
     if (filteredNotes.some(note => note.includes('Journal 1'))) {
       console.log('Search by Title: PASS');
     } else {
-      console.log('Search by Title: FAIL');
+      await showMessage(page, 'Search by Title: FAIL');
+      await page.screenshot({ path: 'hometest1.png', fullPage: true });
+      await browser.close();
+      return;
     }
     // Clear the search input after the individual search test
     await clearSearchField(searchInput);
@@ -93,7 +98,10 @@ const path = require('path');
     if (tagExists) {
       await page.click(tagSelector);
     } else {
-      console.log(`Tag "${tagToSelect}" not found`);
+      await showMessage(page, `Tag "${tagToSelect}" not found`);
+      await page.screenshot({ path: 'hometest2.png', fullPage: true });
+      await browser.close();
+      return;
     }
 
     // Wait for filtering to complete
@@ -109,7 +117,10 @@ const path = require('path');
     if (filteredNotes.every(note => note.includes(tagToSelect))) {
       console.log(`Filter by Tag "${tagToSelect}": PASS`);
     } else {
-      console.log(`Filter by Tag "${tagToSelect}": FAIL`);
+      await showMessage(page, `Filter by Tag "${tagToSelect}": FAIL`);
+      await page.screenshot({ path: 'hometest3.png', fullPage: true });
+      await browser.close();
+      return;
     }
     // Clear the tag selection after the individual tag filter test
     await clearTagSelection(dropdownButton, dropdownOptionSelector);
@@ -143,13 +154,33 @@ const path = require('path');
     if (filteredNotes.every(note => note.includes(searchText) && note.includes(tagToSelect))) {
       console.log(`Combined Filter: PASS`);
     } else {
-      console.log(`Combined Filter: FAIL`);
+      await showMessage(page, `Combined Filter: FAIL`);
+      await page.screenshot({ path: 'hometest4.png', fullPage: true });
+      await browser.close();
+      return;
     }
     await clearTagSelection(dropdownButton, dropdownOptionSelector);
     await page.click(dropdownButton);
     await clearSearchField(searchInput);
     
   }
+  // Function to show a message in the browser and stop further execution
+async function showMessage(page, message) {
+  console.log(message);
+  await page.evaluate((msg) => {
+      const div = document.createElement('div');
+      div.style.position = 'fixed';
+      div.style.top = '50%';
+      div.style.left = '50%';
+      div.style.transform = 'translate(-50%, -50%)';
+      div.style.backgroundColor = 'red';
+      div.style.color = 'white';
+      div.style.padding = '20px';
+      div.style.zIndex = '10000';
+      div.innerText = msg;
+      document.body.appendChild(div);
+  }, message);
+}
 
   // Run individual tests
   await testSearchNotesByTitle();

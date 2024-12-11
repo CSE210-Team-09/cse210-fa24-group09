@@ -1,12 +1,14 @@
 const puppeteer = require('puppeteer');
-const path = require("path");
+const path = require('path'); // Required for saving screenshots in the test folder
 
 async function run() {
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
     const page = await browser.newPage();
-    // Navigate to your HTML file (adjust the path as necessary)
-    const homePath = path.resolve(__dirname, '../source/html/home.html'); // Adjust 'home.html' if it's in a different folder relative to this script
-    await page.goto(`file://${homePath}`);
+
+    // Dynamically determine the absolute path to the home.html file
+    const homePath = 'https://cse210-team-09.github.io/cse210-fa24-group09/html/home.html';
+    await page.goto(homePath);
+
     // Test: New Note Button functionality
     const newNoteButtonSelector = '.header button:nth-child(2)';  // Selects the "+ New Note" button specifically
     await page.waitForSelector(newNoteButtonSelector);
@@ -28,20 +30,25 @@ async function run() {
     const saveButtonSelector = '#save-button';
     await page.click(saveButtonSelector);
     console.log('Clicked Save button.');
+
     // After saving, go back to the home page
-    await page.goto(`file://${homePath}`);
+    await page.goto(homePath);
     console.log('Returned to home page.');
+
     // Verify the new note appears on the home page
     const newnotesListSelector = '#notes-list';
-    const notes1 = await page.$$eval(`${newnotesListSelector} li`, notes1 =>
-        notes1.map(note => note.textContent.trim())
+    const notes1 = await page.$$eval(`${newnotesListSelector} li`, notes =>
+        notes.map(note => note.textContent.trim())
     );
     console.log('Current Notes:', notes1);
 
     if (notes1.some(note => note.includes('Test Note Title'))) {
         console.log('New note successfully added and displayed on the home page.');
     } else {
-        console.error('New note was not displayed on the home page.');
+        await showMessage(page, 'New note was not displayed on the home page.');
+        await page.screenshot({ path: 'hometest1.png', fullPage: true });
+        await browser.close();
+        return;
     }
 
     // Test: Clicking "New Note" button navigates to create.html again
@@ -70,6 +77,24 @@ async function run() {
     console.log('Current Notes:', notes);
 
     await browser.close();
+}
+
+// Function to show a message in the browser and stop further execution
+async function showMessage(page, message) {
+    console.log(message);
+    await page.evaluate((msg) => {
+        const div = document.createElement('div');
+        div.style.position = 'fixed';
+        div.style.top = '50%';
+        div.style.left = '50%';
+        div.style.transform = 'translate(-50%, -50%)';
+        div.style.backgroundColor = 'red';
+        div.style.color = 'white';
+        div.style.padding = '20px';
+        div.style.zIndex = '10000';
+        div.innerText = msg;
+        document.body.appendChild(div);
+    }, message);
 }
 
 run();

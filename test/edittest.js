@@ -1,13 +1,13 @@
 const puppeteer = require('puppeteer');
-const path = require('path');
 
 async function run() {
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
     const page = await browser.newPage();
 
-    // Navigate to the home page
-    const homePath = path.resolve(__dirname, '../source/html/home.html');
-    await page.goto(`file://${homePath}`, { waitUntil: 'load' });
+    // Dynamically determine the absolute path to the home.html file
+    const homePath = 'https://cse210-team-09.github.io/cse210-fa24-group09/html/home.html';
+    await page.goto(homePath);
+
 
     await page.waitForSelector('#notes-list');
     const notes = await page.$$('.notes-list li');
@@ -16,7 +16,8 @@ async function run() {
     if (notes.length >= 2) {
         await notes[1].click(); // Click the second note
     } else {
-        console.log('Less than two notes found');
+        await showMessage(page, 'Less than two notes found. Stopping test execution.');
+        await page.screenshot({ path: 'hometest1.png', fullPage: true });
         await browser.close();
         return;
     }
@@ -49,16 +50,10 @@ async function run() {
         document.querySelector('#comment-input').value = ''; // Clear comments
     });
 
-    // Edit the title
+    // Edit the title,tag,code and comment
     await page.type('#title-input', 'Updated Note Title');
-
-    // Edit the tags
     await page.type('#tag-input', 'javascript, html, puppeteer');
-
-    // Edit the code input
     await page.type('#code-input', 'const a = 10; const b = 20; console.log(a + b);');
-
-    // Edit the comment input
     await page.type('#comment-input', 'This is a test comment for Puppeteer.');
 
     // Click the Save button
@@ -80,7 +75,11 @@ async function run() {
     if (updatedTitle === 'Updated Note Title' && updatedTags.join(', ') === 'javascript, html, puppeteer' && updatedCode === 'const a = 10; const b = 20; console.log(a + b);' && updatedComment === 'This is a test comment for Puppeteer.') {
         console.log('Test Passed: The content was updated and saved successfully!');
     } else {
-        console.log('Test Failed: The content does not match the expected values.');
+        await showMessage(page, 'Test Failed: The content does not match the expected values.');
+        await page.screenshot({ path: 'hometest1.png', fullPage: true });
+        await browser.close();
+        return;
+        
     }
 
     // Click the "Edit" button to navigate to the edit page
@@ -97,12 +96,31 @@ async function run() {
     if (pageUrl.includes('view.html')) { // Assuming the view page is named `view.html`
         console.log('Test Passed: Successfully navigated back to the view page.');
     } else {
-        console.log('Test Failed: Did not navigate back to the view page.');
+        await showMessage(page, 'Test Failed: Did not navigate back to the view page.');
+        await page.screenshot({ path: 'hometest1.png', fullPage: true });
+        await browser.close();
+        return;
     }
 
     // Close the browser
     await browser.close();
 }
-
+// Function to show a message in the browser and stop further execution
+async function showMessage(page, message) {
+    console.log(message);
+    await page.evaluate((msg) => {
+        const div = document.createElement('div');
+        div.style.position = 'fixed';
+        div.style.top = '50%';
+        div.style.left = '50%';
+        div.style.transform = 'translate(-50%, -50%)';
+        div.style.backgroundColor = 'red';
+        div.style.color = 'white';
+        div.style.padding = '20px';
+        div.style.zIndex = '10000';
+        div.innerText = msg;
+        document.body.appendChild(div);
+    }, message);
+}
 // Run the test
 run().catch(console.error);
