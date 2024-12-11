@@ -8,17 +8,17 @@ async function run() {
     const homePath = path.resolve(__dirname, '../source/html/home.html'); // Adjust 'home.html' if it's in a different folder relative to this script
     await page.goto(`file://${homePath}`);
     // Test: New Note Button functionality
-    const newNoteButtonSelector = '.header button:nth-child(3)';  // Selects the "+ New Note" button specifically
+    const newNoteButtonSelector = '.header button:nth-child(2)';  // Selects the "+ New Note" button specifically
     await page.waitForSelector(newNoteButtonSelector);
     await page.click(newNoteButtonSelector);
     console.log('Clicked + New Note button.');
 
     // Wait for the create.html page to load
-    await page.waitForSelector('#text-input');
+    await page.waitForSelector('#title-input');
     console.log('Navigated to create note page.');
 
     // Fill in the form for creating a new note
-    await page.type('#text-input', 'Test Note Title');
+    await page.type('#title-input', 'Test Note Title');
     await page.type('#tag-input', 'tag1, tag2');
     await page.type('#code-input', 'console.log("Hello World");');
     await page.type('#comment-input', 'This is a test comment.');
@@ -50,7 +50,7 @@ async function run() {
     console.log('Clicked + New Note button again.');
 
     // Wait for the create.html page to load again
-    await page.waitForSelector('#text-input');
+    await page.waitForSelector('#title-input');
     console.log('Navigated to create note page again.');
 
     // Click the Cancel button
