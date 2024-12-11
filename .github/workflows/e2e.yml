@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      
       # Step 1: Check out the repository code
       - name: Check out code
         uses: actions/checkout@v4
@@ -28,8 +29,24 @@ jobs:
 
       # Step 4: Run Puppeteer tests
       - name: Run Puppeteer Tests
-        run: node test/source.js
-
+        run: |
+          for file in test/e2e/*.js; do
+            echo "Running $file..."
+            node "$file"
+          done
+      
+      - name: Check if PNG files exist using glob
+        shell: bash
+        run: |
+          shopt -s nullglob
+          png_files=(*.png)
+          if [ ${#png_files[@]} -gt 0 ]; then
+            echo "There are PNG files found in /test."
+            exit 1
+          else
+            echo "There are no PNG files in /test."
+          fi
+          
       # Step 5: Post-test cleanup (Optional)
       - name: Cleanup
         if: always()
