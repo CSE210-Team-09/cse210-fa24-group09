@@ -1,19 +1,7 @@
-
-/**
- * Retrieves the value of the "id" query parameter from the current URL.
- *
- * @return {string|null} The value of the "id" query parameter as a string, or `null` if not found.
- */
-function getQueryParam() {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get('id');
-}
 /**
  * Given the note, load the containers with the note's content
  * @param {Object} note
- * @returns {any} this function does not return anything meaningful
  */
-
 function load_containers(note) {
   const codeContainer = document.getElementById('code-input');
   const commentContainer = document.getElementById('comment-input');
@@ -27,7 +15,6 @@ function load_containers(note) {
     return;
   }
 
-
   // Populate the containers with the note's content
   titleContainer.value = note.title;
   codeContainer.value = note.code;
@@ -36,92 +23,44 @@ function load_containers(note) {
 }
 
 function load_listeners(note_id) {
-  document.getElementById('save-button').addEventListener('click', () => save_note());
+  document.getElementById('save-button').addEventListener('click', () => save_note_from_edit(note_id));
   document.getElementById('cancel-button').addEventListener('click', () => redirect_page('view', note_id));
+  enable_tab_indent('code-input');
+  enable_tab_indent('comment-input');
 }
 
+/**
+ * Initializes the edit page by loading the note for the given ID,
+ * attaching event listeners, and populating the UI containers with note data.
+ */
 function init_edit() {
-  // const id = getQueryParam();
+  // Get the note ID from the URL
+  const note_id = get_id_from_url();
+  console.log(note_id, 'from init');
 
-  const note_id = parseInt(getQueryParam(), 10);
-  // const note_id = 1; // change from getting the id from the url
+  // Load event listeners
   load_listeners(note_id);
 
-  // Fetch notes from local storage
+  // Fetch note to display from local storage
   const note = API.get_journal(note_id);
 
-
+  // Display the content of the notes in the containers
   load_containers(note);
 }
 
-function save_note() {
-  console.log('attemping to save');
-  let title = document.getElementById('title-input').value.trim();
-  const code = document.getElementById('code-input').value;
-  const comment = document.getElementById('comment-input').value;
-  const tags = document.getElementById('tag-input').value;
-  const tagsArr = tags && tags.trim() !== '' ? tags.split(',').map((tag) => tag.trim()) : [];
-
-  // Input validation for the title
-  if (title === '') {
-    title = 'Untitled'; // Default title
-  } else if (title.length > 40) {
-    alert('Title cannot exceed 40 characters. Please shorten your title.');
-    return; // Stop the save function if the title is too long
+/**
+ * Saves the current edits to the note and redirects to the view page.
+ * @param {number} note_id - The ID of the note being edited
+ * @return {void}
+ */
+function save_note_from_edit(note_id) {
+  const successful_save = save_note(note_id);
+  if (!successful_save) {
+    return;
   }
-
-  // Input validation for tags
-  if (tags && tags.trim() !== '') {
-    // Check max character length for each tag
-    for (const tag of tagsArr) {
-      if (tag.length > 15) {
-        alert(`Tag "${tag}" exceeds the maximum length of 15 characters. Please shorten it.`);
-        return; // Stop the save function if any tag is too long
-      }
-    }
-  }
-
-  const note_id = parseInt(getQueryParam(), 10);
-  API.save_journal(note_id, title, code, comment, tagsArr);
   redirect_page('view', note_id);
 }
 
-/**
- * Utility function to redirect to a page
- * @param {string} page (home, create, view, edit)
- * @param {string} note_id  (optional)
- */
-function redirect_page(page, note_id = null) {
-  let url = `../html/${page}.html`;
-  if (note_id !== null) {
-    url += `?id=${note_id}`;
-  }
-  console.log(url);
-  window.location.href = url;
-}
-
-/**
- * This function enables the Tab key to insert indentation rather than moving to the next text box
- * @param {string} textAreaID - ID of text area
- */
-function enableTabIndent(textAreaID) {
-  const input = document.getElementById(textAreaID);
-
-  input.addEventListener('keydown', function(e) {
-    if (e.key === 'Tab') {
-      e.preventDefault();
-      const start = e.target.selectionStart;
-      const end = e.target.selectionEnd;
-      const indent = '    ';
-
-      e.target.value = e.target.value.substring(0, start) + indent + e.target.value.substring(end);
-      e.target.selectionStart = e.target.selectionEnd = start + indent.length;
-    }
-  });
-}
-
-enableTabIndent('code-input');
-enableTabIndent('comment-input');
-
-
-init_edit();
+document.addEventListener('DOMContentLoaded', (event) => {
+  init_edit();
+});
