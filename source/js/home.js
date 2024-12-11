@@ -44,9 +44,11 @@ function displayNotes(filteredNotes = notes) {
   });
 }
 
-// Function to filter notes based on the search bar input
 /**
  * Filters notes based on the search bar input and selected tags, and displays the filtered results.
+ *
+ * @param {Array} [customNotes=notes] - Optional. An array of notes to filter. If not provided, the global `notes` variable is used.
+ * @return {Array} Filtered notes after applying the search term and selected tags.
  */
 function filterNotes(customNotes = notes) {
   const searchTerm = document.getElementById('search-bar').value.toLowerCase();
@@ -102,11 +104,11 @@ function load_listeners() {
 
   // Add listener for the Enter key in the search bar
   document.getElementById('search-bar').addEventListener('keypress',
-    function (event) {
-      if (event.key === 'Enter') {
-        filterNotes();
-      }
-    });
+      function(event) {
+        if (event.key === 'Enter') {
+          filterNotes();
+        }
+      });
   document.getElementById('create-button').addEventListener('click', () => redirect_page('create'));
 }
 
