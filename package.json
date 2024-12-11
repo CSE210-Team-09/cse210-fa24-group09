@@ -13,5 +13,11 @@
     "jsdoc": "^4.0.4",
     "prettier": "^3.4.1",
     "puppeteer": "^23.9.0"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
+  },
+  "dependencies": {
+    "jest-environment-jsdom": "^29.7.0"
   }
 }
