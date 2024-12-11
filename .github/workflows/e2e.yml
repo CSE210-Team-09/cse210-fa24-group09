@@ -39,12 +39,12 @@ jobs:
         shell: bash
         run: |
           shopt -s nullglob
-          png_files=(/*.png)
-          if [ ${#png_files[@]} -eq 0 ]; then
-            echo "No PNG files found in /test."
+          png_files=(*.png)
+          if [ ${#png_files[@]} -gt 0 ]; then
+            echo "There are PNG files found in /test."
             exit 1
           else
-            echo "There are PNG files in /test."
+            echo "There are no PNG files in /test."
           fi
           
       # Step 5: Post-test cleanup (Optional)
