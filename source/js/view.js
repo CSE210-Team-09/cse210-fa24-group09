@@ -20,14 +20,14 @@ function createTextarea(container, id, label, value, rows) {
     const lText = document.createElement('label');
     lText.setAttribute('for', id);
     lText.textContent = label;
-    container.appendChild(lText)
+    container.appendChild(lText);
   }
   const textarea = document.createElement('textarea');
   textarea.id = id;
-  textarea.value = value
-  textarea.rows = rows
-  textarea.readOnly = true
-  container.appendChild(textarea)
+  textarea.value = value;
+  textarea.rows = rows;
+  textarea.readOnly = true;
+  container.appendChild(textarea);
 }
 
 /**
@@ -96,4 +96,4 @@ const id = getID();
 document.addEventListener('DOMContentLoaded', (event) => {
   load_view_listeners();
   loadNoteById(id);
-})
+});
