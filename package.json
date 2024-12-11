@@ -1,6 +1,10 @@
 {
   "scripts": {
     "test": "jest",
+    "e2e-home": "node test/e2e/hometest",
+    "e2e-create": "node test/e2e/createtest",
+    "e2e-edit": "node test/e2e/edittest",
+    "e2e-view": "node test/e2e/viewtest",
     "lint": "npx eslint --config ./pipeline/.eslintrc.yml ./source/js",
     "lint-fix": "npx eslint --config ./pipeline/.eslintrc.yml ./source/js --fix",
     "prettier": "npx prettier --check ./source/html/**/*.html ./source/css/**/*.css",
