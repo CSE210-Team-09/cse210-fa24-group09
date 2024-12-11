@@ -44,15 +44,19 @@ async function run() {
   
     // Focus, select all, and then overwrite content
     await page.click('#title-input', { clickCount: 3 }); // Select all content
+    await page.keyboard.press('Backspace'); // Clear content
     await page.type('#title-input', 'Updated Note Title', { delay: 100 });
 
     await page.click('#tag-input', { clickCount: 3 }); // Select all content
+    await page.keyboard.press('Backspace'); // Clear content
     await page.type('#tag-input', 'javascript, html, puppeteer', { delay: 100 });
 
     await page.click('#code-input', { clickCount: 3 }); // Select all content
+    await page.keyboard.press('Backspace'); // Clear content
     await page.type('#code-input', 'const a = 10; const b = 20; console.log(a + b);', { delay: 100 });
 
     await page.click('#comment-input', { clickCount: 3 }); // Select all content
+    await page.keyboard.press('Backspace'); // Clear content
     await page.type('#comment-input', 'This is a test comment for Puppeteer.', { delay: 100 });
 
     // Click the Save button
