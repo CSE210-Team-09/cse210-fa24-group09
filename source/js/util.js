@@ -167,3 +167,12 @@ function enable_tab_indent(textAreaID) {
     }
   });
 }
+
+module.exports = {
+  validate_title,
+  validate_tags,
+  parse_tags,
+  get_id_from_url,
+  enable_tab_indent,
+  save_note,
+};
