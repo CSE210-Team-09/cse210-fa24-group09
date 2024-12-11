@@ -33,7 +33,6 @@ describe('filterNotes', () => {
     // Mock `displayNotes` function
     mockDisplayNotes = jest.fn();
     global.displayNotes = mockDisplayNotes;
-
     global.notes = mockNotes; // Set notes globally
   });
 
@@ -45,7 +44,7 @@ describe('filterNotes', () => {
     const searchBar = document.getElementById('search-bar');
     searchBar.value = 'First'; // Simulate user typing "First"
   
-    const result = filterNotes(); // Call the function
+    const result = filterNotes(notes); // Call the function
   
     // Verify the return value
     expect(result).toEqual([
@@ -62,7 +61,7 @@ describe('filterNotes', () => {
     const searchBar = document.getElementById('search-bar');
     searchBar.value = ''; // Simulate an empty search bar
   
-    const result = filterNotes(); // Call the function
+    const result = filterNotes(notes); // Call the function
     // Verify the return value matches all notes
     expect(result).toEqual(mockNotes);
   

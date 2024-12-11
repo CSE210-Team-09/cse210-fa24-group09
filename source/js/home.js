@@ -48,11 +48,11 @@ function displayNotes(filteredNotes = notes) {
 /**
  * Filters notes based on the search bar input and selected tags, and displays the filtered results.
  */
-function filterNotes() {
+function filterNotes(customNotes = notes) {
   const searchTerm = document.getElementById('search-bar').value.toLowerCase();
   const selectedTags = Array.from(document.querySelectorAll('#dropdown-options input[type="checkbox"]:checked')).map((checkbox) => checkbox.value);
 
-  const filteredNotes = notes.filter((note) => {
+  const filteredNotes = customNotes.filter((note) => {
     const matchesTitle = note.title.toLowerCase().includes(searchTerm);
     const matchesTags = selectedTags.length === 0 || selectedTags.every((tag) => note.tags.includes(tag));
     return matchesTitle && matchesTags;
@@ -102,11 +102,11 @@ function load_listeners() {
 
   // Add listener for the Enter key in the search bar
   document.getElementById('search-bar').addEventListener('keypress',
-      function(event) {
-        if (event.key === 'Enter') {
-          filterNotes();
-        }
-      });
+    function (event) {
+      if (event.key === 'Enter') {
+        filterNotes();
+      }
+    });
   document.getElementById('create-button').addEventListener('click', () => redirect_page('create'));
 }
 
