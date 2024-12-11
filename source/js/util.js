@@ -3,7 +3,6 @@ TAG_MAX_LENGTH = 15;
 TITLE_MAX_LEN_EXCEEDED_MSG = `Title cannot exceed ${TITLE_MAX_LENGTH} characters. Please shorten your title.`;
 DEFAULT_TITLE = 'Untitled';
 
-
 // This file contains common functions that the others use
 /**
  * This function gets the elements from the page and saves the note given the available infromation in the page. Will raise an alert if the title is too long.

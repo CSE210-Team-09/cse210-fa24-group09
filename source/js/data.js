@@ -200,7 +200,5 @@ const API = {
     API.create_journal('Journal 2', 'Code 2', 'Comment 2', tags = ['tag1', 'tag2']);
     API.create_journal('Journal 3', 'Code 3', 'Comment 3', tags = ['tag2', 'tag3']);
   },
-
-
 };
 
