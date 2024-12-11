@@ -40,4 +40,3 @@ function load_create_listeners() {
 document.addEventListener('DOMContentLoaded', (event) => {
   init_create();
 });
-

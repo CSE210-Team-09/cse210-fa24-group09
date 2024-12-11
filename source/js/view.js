@@ -1,31 +1,37 @@
-// Get the notes containers
-const codeContainer = document.getElementById('code-container');
-const commentContainer = document.getElementById('comment-container');
-const titleContainer = document.getElementById('title-container');
-const tagContainer = document.getElementById('tag-container');
-
 /**
- * Retrieves the value of the "id" query parameter from the current URL.
- *
+ * Retrieves the value of the "id" parameter from the current URL.
  * @return {string|null} The value of the "id" query parameter as a string, or `null` if not found.
  */
-function getQueryParam() {
+function getID() {
   const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get('id');
+  return parseInt(urlParams.get('id'), 10);
 }
 
 /**
- * Parses the "id" query parameter from the URL into an integer.
- * If the query parameter is not present or cannot be parsed as an integer, the value will be `NaN`.
- *
- * @type {number} The parsed ID from the URL.
+ * Creates the text area and attaches it to a container
+ * @param {HTMLElement} container - Existing container element
+ * @param {string} id - Text area ID
+ * @param {string} label - Label text
+ * @param {string} value - The entry in the text area
+ * @param {number} rows - # of rows for the text area
  */
-const id = parseInt(getQueryParam(), 10); // getQueryParam();
+function createTextarea(container, id, label, value, rows) {
+  if (label) {
+    const lText = document.createElement('label');
+    lText.setAttribute('for', id);
+    lText.textContent = label;
+    container.appendChild(lText);
+  }
+  const textarea = document.createElement('textarea');
+  textarea.id = id;
+  textarea.value = value;
+  textarea.rows = rows;
+  textarea.readOnly = true;
+  container.appendChild(textarea);
+}
 
-// Fetch notes from local storage
 /**
  * Loads a note from local storage based on its ID and displays it on the page.
- *
  * @param {number} noteId - The ID of the note to load.
  */
 function loadNoteById(noteId) {
@@ -36,36 +42,13 @@ function loadNoteById(noteId) {
   }
 
   // Title (no label)
-  const titleTextarea = document.createElement('textarea');
-  titleTextarea.id = 'title';
-  titleTextarea.value = note.title;
-  titleTextarea.rows = 2;
-  titleTextarea.readOnly = true;
-  titleContainer.appendChild(titleTextarea);
+  createTextarea(titleContainer, 'title', '', note.title, 2);
 
   // Code (with label)
-  const codeLabel = document.createElement('label');
-  codeLabel.setAttribute('for', 'code');
-  codeLabel.textContent = 'Code';
-  const codeTextarea = document.createElement('textarea');
-  codeTextarea.id = 'code';
-  codeTextarea.value = note.code;
-  codeTextarea.rows = 10;
-  codeTextarea.readOnly = true;
-  codeContainer.appendChild(codeLabel);
-  codeContainer.appendChild(codeTextarea);
+  createTextarea(codeContainer, 'code', 'Code', note.code, 10);
 
   // Comment (with label)
-  const commentLabel = document.createElement('label');
-  commentLabel.setAttribute('for', 'comment');
-  commentLabel.textContent = 'Comment';
-  const commentTextarea = document.createElement('textarea');
-  commentTextarea.id = 'comment';
-  commentTextarea.value = note.comment;
-  commentTextarea.rows = 5;
-  commentTextarea.readOnly = true;
-  commentContainer.appendChild(commentLabel);
-  commentContainer.appendChild(commentTextarea);
+  createTextarea(commentContainer, 'comment', 'Comment', note.comment, 5);
 
   // Tags (as individual patches)
   if (note.tags && note.tags.length > 0) {
@@ -81,23 +64,6 @@ function loadNoteById(noteId) {
   }
 }
 
-// Go back home
-/**
- * Redirects the user to the home page.
- */
-function goBackHome() {
-  window.location.href = '../html/home.html';
-}
-
-// Edit note
-/**
- * Redirects the user to the edit page for the note.
- */
-function editNote() {
-  window.location.href = `../html/edit.html?id=${id}`;
-}
-
-// Delete note
 /**
  * Delete the note and redirects the user to the home page.
  */
@@ -110,5 +76,24 @@ function deleteNote() {
   window.location.href = '../html/home.html';
 }
 
+/**
+ * Load the listeners and its function for each button
+ */
+function load_view_listeners() {
+  document.getElementById('home-button').addEventListener('click', () => redirect_page('home'));
+  document.getElementById('edit-button').addEventListener('click', () => redirect_page('edit', id));
+  document.getElementById('delete-button').addEventListener('click', () => deleteNote());
+}
+
+// Get the notes containers
+const codeContainer = document.getElementById('code-container');
+const commentContainer = document.getElementById('comment-container');
+const titleContainer = document.getElementById('title-container');
+const tagContainer = document.getElementById('tag-container');
+const id = getID();
+
 // Load the note when the page loads
-loadNoteById(id);
+document.addEventListener('DOMContentLoaded', (event) => {
+  load_view_listeners();
+  loadNoteById(id);
+});
