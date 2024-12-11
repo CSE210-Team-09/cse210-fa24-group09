@@ -23,6 +23,19 @@ h1 {
   justify-content: center;
 }
 
+#title-container textarea {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 2em; /* Adjust for heading-like appearance */
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  background-color: transparent;
+  resize: none;
+  overflow: hidden; /* Prevent scrollbars */
+  color: #333;
+  width: 100%; /* Optional: Adjust width */
+}
+
 #tag-container {
   display: flex;
   flex-wrap: wrap;
@@ -46,12 +59,10 @@ h1 {
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
-  border: 2px solid #ccc;
-  padding: 20px;
-  border-radius: 10px;
   background-color: #f9f9f9;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
+
 #code-comment-container {
   padding: 20px;
   list-style: none;
@@ -59,6 +70,7 @@ h1 {
   max-height: 80vh;
   overflow-y: auto;
 }
+
 #comment-container {
   list-style: none;
   max-height: 40vh;
@@ -117,4 +129,35 @@ h1 {
 
 #delete-button:hover {
   background-color: #0056b3;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  resize: none;
+  font-family: "Courier New", Courier, monospace;
+}
+
+#title-container textarea:focus {
+  outline: none;
+}
+
+#code-container textarea:focus,
+#comment-container textarea:focus {
+  outline-color: #28a745;
+}
+
+textarea[readonly] {
+  background-color: #f9f9f9;
+  color: #333;
 }

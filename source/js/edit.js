@@ -1,24 +1,12 @@
-
 /**
- * Retrieves the value of the "id" query parameter from the current URL.
- *
- * @return {string|null} The value of the "id" query parameter as a string, or `null` if not found.
+ * Given the note, load the containers with the note's content.
+ * @param {Object} note - The current note being edited.
  */
-function getQueryParam() {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get('id');
-}
-/**
- * Given the note, load the containers with the note's content
- * @param {Object} note
- * @returns {any} this function does not return anything meaningful
- */
-
 function load_containers(note) {
   const codeContainer = document.getElementById('code-input');
   const commentContainer = document.getElementById('comment-input');
   const titleContainer = document.getElementById('title-input');
-
+  const tagContainer = document.getElementById('tag-input');
   const valid_note = note !== null;
 
   if (!valid_note) {
@@ -27,59 +15,56 @@ function load_containers(note) {
     return;
   }
 
-
   // Populate the containers with the note's content
   titleContainer.value = note.title;
   codeContainer.value = note.code;
   commentContainer.value = note.comment;
-}
-
-function load_listeners(note_id) {
-  document.getElementById('save-button').addEventListener('click', () => save_note());
-  document.getElementById('cancel-button').addEventListener('click', () => redirect_page('view', note_id));
-}
-
-function init_edit() {
-  // const id = getQueryParam();
-
-  const note_id = parseInt(getQueryParam(), 10);
-  // const note_id = 1; // change from getting the id from the url
-  load_listeners(note_id);
-
-  // Fetch notes from local storage
-  const note = API.get_journal(note_id);
-
-
-  load_containers(note);
-}
-
-function save_note() {
-  console.log('attemping to save');
-  const title = document.getElementById('title-input').value;
-  const code = document.getElementById('code-input').value;
-  const comment = document.getElementById('comment-input').value;
-
-  const note_id = parseInt(getQueryParam(), 10);
-  console.log(note_id);
-  const note = API.get_journal(note_id);
-  API.save_journal(note_id, title, code, comment, note.tags);
-  console.log(API.get_journal(note_id));
-  redirect_page('view', note_id);
+  tagContainer.value = note.tags.join(', ');
 }
 
 /**
- * Utility function to redirect to a page
- * @param {string} page (home, create, view, edit)
- * @param {string} note_id  (optional)
+ * Enables the save button, cancel button, and use of the tab key to indent text.
+ * @param {number} note_id - The ID of the note being edited.
  */
-function redirect_page(page, note_id = null) {
-  let url = `../html/${page}.html`;
-  if (note_id !== null) {
-    url += `?id=${note_id}`;
-  }
-  console.log(url);
-  window.location.href = url;
+function load_listeners(note_id) {
+  document.getElementById('save-button').addEventListener('click', () => save_note_from_edit(note_id));
+  document.getElementById('cancel-button').addEventListener('click', () => redirect_page('view', note_id));
+  enable_tab_indent('code-input');
+  enable_tab_indent('comment-input');
 }
 
+/**
+ * Initializes the edit page by loading the note for the given ID,
+ * attaching event listeners, and populating the UI containers with note data.
+ */
+function init_edit() {
+  // Get the note ID from the URL
+  const note_id = get_id_from_url();
+  console.log(note_id, 'from init');
 
-init_edit();
+  // Load event listeners
+  load_listeners(note_id);
+
+  // Fetch note to display from local storage
+  const note = API.get_journal(note_id);
+
+  // Display the content of the notes in the containers
+  load_containers(note);
+}
+
+/**
+ * Saves the current edits to the note and redirects to the view page.
+ * @param {number} note_id - The ID of the note being edited.
+ * @return {void}
+ */
+function save_note_from_edit(note_id) {
+  const successful_save = save_note(note_id);
+  if (!successful_save) {
+    return;
+  }
+  redirect_page('view', note_id);
+}
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  init_edit();
+});

@@ -1,25 +1,43 @@
 /**
- * This function routes back to the home page.
- */
-function goHome() {
-  window.location.href = '../html/home.html';
-}
-
-/**
  * This function saves the note using the JournalStorage API, and sends an
  * alert if the note is saved successfully, or if an error occurred.
  */
-function save() {
-  const title = document.getElementById('text-input').value;
-  const code = document.getElementById('code-input').value;
-  const comment = document.getElementById('comment-input').value;
+function save_from_create() {
+  // Get the input values
+  const journal = get_journal_elements();
 
-  const tags = document.getElementById('tag-input').value;
-  const tagsArr = tags && tags.trim() !== '' ? tags.split(',').map((tag) => tag.trim()) : [];
+  journal.title = validate_title(journal.title);
+  if (journal.title === null) {
+    return;
+  }
+  journal.tags = validate_tags(journal.tags);
+  if (journal.tags === null) {
+    return;
+  }
 
-  // Need to call create_journal from data.js to pass the information over
-  if (API.create_journal(title, code, comment, tagsArr)) {
-    noteId = DataIDGenerator.get_data_index() - 1;
-    window.location.href = `../html/view.html?id=${noteId}`;
+  const note_id = API.create_journal(journal.title, journal.code, journal.comment, journal.tags);
+  if (note_id) {
+    redirect_page('view', note_id);
   }
 }
+
+/**
+ * Initialize the create page by loading event listeners.
+ */
+function init_create() {
+  load_create_listeners();
+}
+
+/**
+ * Enables the save button, cancel button, and use of the tab key to indent text.
+ */
+function load_create_listeners() {
+  document.getElementById('save-button').addEventListener('click', () => save_from_create());
+  document.getElementById('cancel-button').addEventListener('click', () => redirect_page('home'));
+  enable_tab_indent('code-input');
+  enable_tab_indent('comment-input');
+}
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  init_create();
+});
