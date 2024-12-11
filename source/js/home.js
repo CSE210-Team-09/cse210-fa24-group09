@@ -59,6 +59,7 @@ function filterNotes() {
   });
 
   displayNotes(filteredNotes);
+  return filteredNotes;
 }
 
 /**
@@ -115,3 +116,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
   populateTagsDropdown();
   load_listeners();
 });
+
+module.exports = filterNotes;
