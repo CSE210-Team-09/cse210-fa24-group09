@@ -65,10 +65,10 @@ function validate_title(title, alert = true) {
 function validate_tags(tags, alert = true) {
   if (tags && tags.length !== 0) {
     tags_arr = tags
-      .map((tag) => tag.trim()) // Remove leading/trailing spaces
-      .filter((tag) => tag !== '') // Remove empty tags
-      .filter((tag, index, self) => self.indexOf(tag) === index); // Remove duplicates
-    tags = tags_arr
+        .map((tag) => tag.trim()) // Remove leading/trailing spaces
+        .filter((tag) => tag !== '') // Remove empty tags
+        .filter((tag, index, self) => self.indexOf(tag) === index); // Remove duplicates
+    tags = tags_arr;
   }
   for (const tag of tags) {
     if (tag.length > TAG_MAX_LENGTH) {
