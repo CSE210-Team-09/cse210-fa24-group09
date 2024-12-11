@@ -45,10 +45,10 @@ function loadNoteById(noteId) {
   createTextarea(titleContainer, 'title', '', note.title, 2);
 
   // Code (with label)
-  createTextarea(codeContainer, 'code', 'Code', note.code, 10);
+  createTextarea(codeContainer, 'code', 'Code', note.code, 17);
 
   // Comment (with label)
-  createTextarea(commentContainer, 'comment', 'Comment', note.comment, 5);
+  createTextarea(commentContainer, 'comment', 'Comment', note.comment, 8);
 
   // Tags (as individual patches)
   if (note.tags && note.tags.length > 0) {
