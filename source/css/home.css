@@ -17,7 +17,7 @@ body {
   margin-bottom: 20px;
 }
 
-.search-bar-dropdown{
+.search-bar-dropdown {
   display: flex;
   align-items: center;
 }
@@ -122,7 +122,7 @@ body {
   margin: auto;
 }
 
-.tagtitle{
+.tagtitle {
   position: relative;
   display: flex;
   align-items: center;

@@ -8,12 +8,12 @@ function getID() {
 }
 
 /**
- * Creates the text area and attaches it to a container
+ * Creates the text area and attaches it to a container.
  * @param {HTMLElement} container - Existing container element
  * @param {string} id - Text area ID
  * @param {string} label - Label text
  * @param {string} value - The entry in the text area
- * @param {number} rows - # of rows for the text area
+ * @param {number} rows - Number of rows for the text area
  */
 function createTextarea(container, id, label, value, rows) {
   if (label) {
@@ -22,6 +22,7 @@ function createTextarea(container, id, label, value, rows) {
     lText.textContent = label;
     container.appendChild(lText);
   }
+
   const textarea = document.createElement('textarea');
   textarea.id = id;
   textarea.value = value;
@@ -36,6 +37,7 @@ function createTextarea(container, id, label, value, rows) {
  */
 function loadNoteById(noteId) {
   const note = API.get_journal(noteId);
+
   if (!note) {
     titleContainer.textContent = 'Note not found.';
     return;
@@ -69,15 +71,17 @@ function loadNoteById(noteId) {
  */
 function deleteNote() {
   API.delete_journal(id);
+
   // Call the global function (from home.js) to refresh the notes list on the homepage
   if (typeof window.onNoteDeleted === 'function') {
     window.onNoteDeleted(); // Notify home.js to update the note list
   }
+
   window.location.href = '../html/home.html';
 }
 
 /**
- * Load the listeners and its function for each button
+ * Load the listeners and its function for each button.
  */
 function load_view_listeners() {
   document.getElementById('home-button').addEventListener('click', () => redirect_page('home'));

@@ -1,42 +1,42 @@
-<!DOCTYPE html>
+<!doctype html>
 
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Notes App</title>
-  <link rel="stylesheet" href="../css/home.css">
-</head>
-<body>
-  <div id="app">
-    <div class="header">
-      <div class="search-bar-container">
-        <i class="search-icon">&#128269;</i>
-        <input type="text" id="search-bar" placeholder="Search Notes by Title" oninput="filterNotes()">
-      </div>
-      <button id="create-button">+ New Note</button>
-    </div>
-    <div class="tagtitle">
-      <div class="multi-select-dropdown">
-        <button id="dropdown-btn">Filter Tags</button>
-        <div id="dropdown-options" class="dropdown-options">
-          <!-- Options will be dynamically populated -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notes App</title>
+    <link rel="stylesheet" href="../css/home.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="header">
+        <div class="search-bar-container">
+          <i class="search-icon">&#128269;</i>
+          <input
+            type="text"
+            id="search-bar"
+            placeholder="Search Notes by Title"
+            oninput="filterNotes()"
+          />
         </div>
+        <button id="create-button">+ New Note</button>
       </div>
-      <div id="title">
-        Code Snippet Saver
+      <div class="tagtitle">
+        <div class="multi-select-dropdown">
+          <button id="dropdown-btn">Filter Tags</button>
+          <div id="dropdown-options" class="dropdown-options">
+            <!-- Options will be dynamically populated -->
+          </div>
+        </div>
+        <div id="title">Code Snippet Saver</div>
+      </div>
+
+      <div id="list-container">
+        <ul id="notes-list" class="notes-list"></ul>
       </div>
     </div>
-    
-    <div id="list-container">
-      <ul id="notes-list" class="notes-list">    </ul>
-    </div>
-  
-
-  </div>
-  <script src="../js/data.js"></script>
-  <script src="../js/home.js"></script>
-  <script src="../js/util.js"></script>
-
-</body>
+    <script src="../js/data.js"></script>
+    <script src="../js/home.js"></script>
+    <script src="../js/util.js"></script>
+  </body>
 </html>

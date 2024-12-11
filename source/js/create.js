@@ -37,6 +37,7 @@ function load_create_listeners() {
   enable_tab_indent('code-input');
   enable_tab_indent('comment-input');
 }
+
 document.addEventListener('DOMContentLoaded', (event) => {
   init_create();
 });

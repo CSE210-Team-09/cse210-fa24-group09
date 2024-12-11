@@ -152,8 +152,9 @@ textarea {
   outline: none;
 }
 
-#code-container textarea:focus, #comment-container textarea:focus {
-  outline-color:#28a745;
+#code-container textarea:focus,
+#comment-container textarea:focus {
+  outline-color: #28a745;
 }
 
 textarea[readonly] {

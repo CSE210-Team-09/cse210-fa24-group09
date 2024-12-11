@@ -1,6 +1,6 @@
 /**
- * Given the note, load the containers with the note's content
- * @param {Object} note
+ * Given the note, load the containers with the note's content.
+ * @param {Object} note - The current note being edited.
  */
 function load_containers(note) {
   const codeContainer = document.getElementById('code-input');
@@ -22,6 +22,10 @@ function load_containers(note) {
   tagContainer.value = note.tags.join(', ');
 }
 
+/**
+ * Enables the save button, cancel button, and use of the tab key to indent text.
+ * @param {number} note_id - The ID of the note being edited.
+ */
 function load_listeners(note_id) {
   document.getElementById('save-button').addEventListener('click', () => save_note_from_edit(note_id));
   document.getElementById('cancel-button').addEventListener('click', () => redirect_page('view', note_id));
@@ -50,7 +54,7 @@ function init_edit() {
 
 /**
  * Saves the current edits to the note and redirects to the view page.
- * @param {number} note_id - The ID of the note being edited
+ * @param {number} note_id - The ID of the note being edited.
  * @return {void}
  */
 function save_note_from_edit(note_id) {

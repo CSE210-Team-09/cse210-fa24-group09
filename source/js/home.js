@@ -9,7 +9,6 @@ function init_home() {
   displayNotes(notes);
 }
 
-// Function to display notes on the homepage
 /**
  * Displays a list of notes on the homepage.
  * @param {Array} filteredNotes - Array of notes to be displayed. Defaults to all notes.
@@ -23,6 +22,7 @@ function displayNotes(filteredNotes = notes) {
     notesList.innerHTML = '<li>No notes found</li>';
     return;
   }
+
   filteredNotes.forEach((note) => {
     const noteItem = document.createElement('li');
     const titleDiv = document.createElement('div');
@@ -46,7 +46,6 @@ function displayNotes(filteredNotes = notes) {
 
 /**
  * Filters notes based on the search bar input and selected tags, and displays the filtered results.
- *
  * @param {Array} [customNotes=notes] - Optional. An array of notes to filter. If not provided, the global `notes` variable is used.
  * @return {Array} Filtered notes after applying the search term and selected tags.
  */
