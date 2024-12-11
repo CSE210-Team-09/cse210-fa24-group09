@@ -42,9 +42,12 @@ async function run() {
     // Wait for the title input field to be loaded
     await page.waitForSelector('#title-input');
   
-    // Focus, select all, and then overwrite content
-    await page.click('#title-input', { clickCount: 3 }); // Select all content
-    await page.keyboard.press('Backspace'); // Clear content
+    await page.type('#title-input', 'a'); // Trigger framework reactivity
+    await page.evaluate(() => {
+      const input = document.getElementById('title-input');
+      input.value = ''; // Clear the value
+      input.dispatchEvent(new Event('input', { bubbles: true })); // Trigger input event
+    });
     await page.type('#title-input', 'Updated Note Title', { delay: 100 });
 
     await page.click('#tag-input', { clickCount: 3 }); // Select all content
