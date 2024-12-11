@@ -8,7 +8,7 @@ const {
     get_id_from_url,
     enable_tab_indent,
     save_note,
-  } = require('../source/js/util'); // Adjust the path to match your file location
+  } = require('../../source/js/util'); // Adjust the path to match your file location
   
   describe('validate_title', () => {
     afterEach(() => {

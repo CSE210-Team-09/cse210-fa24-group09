@@ -21,7 +21,7 @@ document.body.innerHTML = `
 `;
 
 // Import `filterNotes` function
-const filterNotes = require('../source/js/home'); // Default import
+const filterNotes = require('../../source/js/home'); // Default import
 
 describe('filterNotes', () => {
   let mockNotes;
