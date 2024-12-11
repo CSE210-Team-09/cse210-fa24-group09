@@ -42,19 +42,18 @@ async function run() {
     // Wait for the title input field to be loaded
     await page.waitForSelector('#title-input');
   
-    // Clear existing content in all fields before updating
-    await page.evaluate(() => {
-        document.querySelector('#title-input').value = ''; // Clear title
-        document.querySelector('#tag-input').value = ''; // Clear tags
-        document.querySelector('#code-input').value = ''; // Clear code
-        document.querySelector('#comment-input').value = ''; // Clear comments
-    });
+    // Focus, select all, and then overwrite content
+    await page.click('#title-input', { clickCount: 3 }); // Select all content
+    await page.type('#title-input', 'Updated Note Title', { delay: 100 });
 
-    // Edit the title,tag,code and comment
-    await page.type('#title-input', 'Updated Note Title');
-    await page.type('#tag-input', 'javascript, html, puppeteer');
-    await page.type('#code-input', 'const a = 10; const b = 20; console.log(a + b);');
-    await page.type('#comment-input', 'This is a test comment for Puppeteer.');
+    await page.click('#tag-input', { clickCount: 3 }); // Select all content
+    await page.type('#tag-input', 'javascript, html, puppeteer', { delay: 100 });
+
+    await page.click('#code-input', { clickCount: 3 }); // Select all content
+    await page.type('#code-input', 'const a = 10; const b = 20; console.log(a + b);', { delay: 100 });
+
+    await page.click('#comment-input', { clickCount: 3 }); // Select all content
+    await page.type('#comment-input', 'This is a test comment for Puppeteer.', { delay: 100 });
 
     // Click the Save button
     await page.click('#save-button');
