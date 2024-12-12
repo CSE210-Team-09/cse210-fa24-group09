@@ -5,6 +5,7 @@ Our project is a CRUD web-based Code Snippet Saver. It allows the users to add, 
 
 
 Our Journal application: [here](https://cse210-team-09.github.io/cse210-fa24-group09/)
+
 Our Show-Off video: [here](https://www.youtube.com/watch?v=mS7oLGwYlZI)
 
 ## DOCS!
