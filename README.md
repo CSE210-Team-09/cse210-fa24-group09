@@ -10,5 +10,5 @@ Our Show-Off video: [here](https://www.youtube.com/watch?v=mS7oLGwYlZI)
 
 ## DOCS!
 
-Our docs can be viewed [here](https://cse210-team-09.github.io/cse210-fa24-group09/docs/index.html)
+Our JSdocs: [here](https://cse210-team-09.github.io/cse210-fa24-group09/docs/index.html)
 
