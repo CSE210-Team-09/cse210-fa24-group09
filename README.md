@@ -12,7 +12,9 @@ Our application's deployment to Github Pages and a video demonstrating its funct
 
 Our Journal application: [here](https://cse210-team-09.github.io/cse210-fa24-group09/)
 
-Our Show-Off video: [here](https://www.youtube.com/watch?v=mS7oLGwYlZI)
+Our Deliverable #1 Show-Off Video: [here](https://www.youtube.com/watch?v=mS7oLGwYlZI)
+Our Deliverable #2 Lessons Video: [here](https://www.youtube.com/watch?v=fTfZPlqHGlk)
+Our Deliverable #3 Technical Video: [here](https://www.youtube.com/watch?v=47n7s6fE6B8)
 
 ## DOCS!
 
